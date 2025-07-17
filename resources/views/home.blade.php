@@ -6,35 +6,18 @@
 
 <body class="antialiased bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-[#1a237e] shadow-lg fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <a href="/" class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <img src="{{ asset('assets/logodishub.png') }}" alt="Dishub Logo" class="h-10 w-auto">
-                    </div>
-                    <span class="ml-3 text-white font-semibold text-lg">DISHUB KOTA BATU</span>
-                </a>
-                <div class="flex items-center gap-2">
-                    <a href="{{ route('login') }}"
-                        class="inline-flex items-center px-4 py-2 border border-white text-sm font-medium rounded-md text-white hover:bg-white hover:text-[#1a237e] transition duration-150 ease-in-out">
-                        Masuk
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    @include('layouts.navhome')
 
     <!-- Hero Section -->
     <div class="pt-24 pb-16 bg-gradient-to-br from-[#1a237e] to-[#283593] text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-xl font-bold text-white">Selamat Datang di</h2>
-                <h2 class="text-3xl font-bold text-blue-200">Pendaftaran Online Uji KIR</h2>
+                <h2 class="text-xl md:text-3xl font-bold text-white">Selamat Datang di</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-blue-200">Pendaftaran Online Uji KIR</h2>
                 {{-- <p class="mt-1 text-gray-600">Sistem Informasi Manajemen PKB</p> --}}
                 <p class="mt-3 max-w-md mx-auto text-base text-gray-200 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                     Aplikasi ini berfungsi sebagai media pendaftaran secara online untuk uji KIR (Uji Kendaraan
-                    Bermotor) yang diselenggarakan oleh UPT. Pengujian Kendaraan Bermnotor - DISHUB Kota Batu.
+                    Bermotor) yang diselenggarakan oleh UPT. Pengujian Kendaraan Bermotor - DISHUB Kota Batu.
                 </p>
                 {{-- <div class="mt-8 max-w-md grid grid-cols-2 items-center justify-center gap-4 md:gap-6"> --}}
                 <div class="mt-8 flex justify-center items-center gap-2">
