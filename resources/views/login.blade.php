@@ -27,17 +27,6 @@
                     <input type="password" name="password" id="password" placeholder="Masukkan Password"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#1a237e] focus:border-[#1a237e]">
                 </div>
-
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <input type="checkbox" id="remember" name="remember"
-                            class="h-4 w-4 text-[#1a237e] border-gray-300 rounded focus:ring-[#1a237e]">
-                        <label for="remember" class="ml-2 block text-sm text-gray-900">
-                            Ingat saya
-                        </label>
-                    </div>
-                </div>
-
                 <div>
                     <button type="button"
                         class="w-full flex justify-center py-2 px-4 mb-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#1a237e] hover:bg-[#283593] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1a237e]">
