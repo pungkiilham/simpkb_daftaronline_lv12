@@ -1,5 +1,4 @@
-{{-- @include('layouts.head')
-</html> --}}
+
 @include('layouts.admin')
 
 @section('content')

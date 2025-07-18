@@ -2,7 +2,6 @@
 
 </html>
 
-@include('layouts.head')
 
 <body class="antialiased bg-gray-50">
     <!-- Navigation -->
@@ -19,18 +18,54 @@
                     Aplikasi ini berfungsi sebagai media pendaftaran secara online untuk uji KIR (Uji Kendaraan
                     Bermotor) yang diselenggarakan oleh UPT. Pengujian Kendaraan Bermnotor - DISHUB Kota Batu.
                 </p>
-                {{-- <div class="mt-8 max-w-md grid grid-cols-2 items-center justify-center gap-4 md:gap-6"> --}}
-                <div class="mt-8 flex justify-center items-center gap-2">
-
-                    <a href="{{ route('daftar') }}"
-                        class="items-center px-8 py-3 shadow border border-transparent text-base font-medium rounded-md text-[#1a237e] bg-white hover:bg-gray-100">
+                {{-- <div class="flex flex-col items-center">
+                    <div
+                        class="max-w-lg mt-8 justify-center items-center gap-2 bg-gray-50 rounded-xl p-8 hover:shadow-xl transition duration-300 border border-gray-200">
+                        <h2 class="text-xl md:text-2xl font-bold text-[#1a237e] mb-8">Daftar Uji KIR Online Disini</h2>
+                        <a href="{{ route('daftar') }}"
+                        class="items-center px-8 py-3 shadow border border-transparent text-base font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
                         Daftar Sekarang
                     </a>
-                    <a href="{{ route('status') }}"
-                        class="items-center px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-[#1a237e] transition duration-150 ease-in-out">
-                        Status Pendaftaran
-                    </a>
-                </div>
+                    </div>
+                </div> --}}
+
+                <form>
+                    <div class="grid md:grid-cols-2 justify-center items-center gap-4">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="max-w-lg px-24 py-12 mt-8 justify-center items-center gap-2 bg-gray-50 rounded-xl p-8 hover:shadow-xl transition duration-300 border border-gray-200">
+                                <h2 class="text-xl md:text-2xl font-bold text-[#1a237e] mb-8">Daftar Uji KIR Online
+                                    Disini</h2>
+                                <a href="{{ route('daftar') }}"
+                                    class="items-center px-8 py-3 shadow border border-transparent text-base font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                                    Daftar Sekarang
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="max-w-lg mt-8 justify-center items-center gap-2 bg-gray-50 rounded-xl p-8 hover:shadow-xl transition duration-300 border border-gray-200">
+                                <h2 class="text-xl md:text-2xl font-bold text-[#1a237e] mb-4">Cek Status Pendaftaran Anda
+                                    Disini</h2>
+                                <div>
+                                    <div class="grid grid-cols-2 justify-center items-ends gap-2">
+                                        <input type="text" name="nopol" placeholder="Contoh: N1234AT"
+                                            class="w-full text-[#1a237e] rounded-lg border-2 border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
+                                        <a href="{{ route('daftar') }}"
+                                            class="items-center px-8 py-3 shadow border border-transparent text-base font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                                            Cek Status
+                                        </a>
+                                    </div>
+                                    <label
+                                    class="block text-sm text-left font-medium text-[#1a237e] mb-1 justify-start">No.
+                                    Polisi / No. Uji</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -52,7 +87,8 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-[#1a237e]">Mudah</h3>
-                    <p class="mt-4 text-gray-600">Daftar uji kendaraan hanya dengan beberapa langkah mudah dari mana saja dan kapan saja.</p>
+                    <p class="mt-4 text-gray-600">Daftar uji kendaraan hanya dengan beberapa langkah mudah dari mana
+                        saja dan kapan saja.</p>
                 </div>
 
                 <!-- Keunggulan 2 -->
@@ -76,7 +112,8 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-[#1a237e]">Efisien</h3>
-                    <p class="mt-4 text-gray-600">Tidak perlu antri panjang, proses lebih efisien dengan sistem online.</p>
+                    <p class="mt-4 text-gray-600">Tidak perlu antri panjang, proses lebih efisien dengan sistem online.
+                    </p>
                 </div>
             </div>
         </div>
