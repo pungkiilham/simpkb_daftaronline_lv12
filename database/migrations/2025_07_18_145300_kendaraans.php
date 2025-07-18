@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('kendaraans', function (Blueprint $table) {
             $table->string('id', 36)->primary();
-            $table->string('nopol');
-            $table->string('nouji');
-            $table->string('nama');
-            $table->string('ktp');
-            $table->date('tanggal_layanan');
+            $table->string('nopol')->nullable();
+            $table->string('nouji')->nullable();
+            $table->string('nama')->nullable();
+            $table->string('ktp')->nullable();
+            $table->date('tanggal_layanan')->nullable();
+            $table->tinyInteger('active')->default(0);
+            $table->timestamps();
         });
     }
 

@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('surat_keterangan')->nullable();
             $table->string('izin_trayek')->nullable();
             $table->string('tera')->nullable();
-            $table->date('tanggal_layanan');
+            // $table->tinyInteger('active')->default(1);
+            $table->timestamps();
         });
     }
 
