@@ -33,7 +33,7 @@
                     <div class="grid md:grid-cols-2 justify-center items-center gap-4">
                         <div class="flex flex-col items-center">
                             <div
-                                class="max-w-lg px-24 py-12 mt-8 justify-center items-center gap-2 bg-gray-50 rounded-xl p-8 hover:shadow-xl transition duration-300 border border-gray-200">
+                                class="max-w-lg px-24 md:py-12 mt-8 justify-center items-center gap-2 bg-gray-50 rounded-xl p-8 hover:shadow-xl transition duration-300 border border-gray-200">
                                 <h2 class="text-xl md:text-2xl font-bold text-[#1a237e] mb-8">Daftar Uji KIR Online
                                     Disini</h2>
                                 <a href="{{ route('daftar') }}"

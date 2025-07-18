@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
 
 Route::get('/login', function () {
     return view('login');
@@ -14,7 +14,7 @@ Route::get('/daftar', function () {
     return view('daftar');
 })->name('daftar');
 
-Route::get('/status', function () {
+Route::get('/', function () {
     return view('status');
 })->name('status');
 
