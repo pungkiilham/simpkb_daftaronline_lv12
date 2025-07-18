@@ -55,134 +55,50 @@
     <!-- Main Content -->
     <div class="bg-white rounded-xl shadow-lg p-3 md:p-4">
 
-        <div class="py-16 bg-white">
+        <div class="py-16 mb-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-extrabold text-[#1a237e]">Lengkapi Untuk Mendaftar</h2>
-                    <p class="mt-4 text-lg text-gray-600">Silahkan untuk melengkapi data dibawah ini untuk mendaftar layanan di UPT. Pengujian Kendaaran Bermotor Kota Batu secara online.</p>
+                    <h2 class="text-3xl font-extrabold text-[#1a237e]">Pilih Layanan Kami</h2>
+                    {{-- <p class="mt-4 text-lg text-gray-600">Silahkan untuk melengkapi data dibawah ini untuk mendaftar
+                        layanan di UPT. Pengujian Kendaaran Bermotor Kota Batu secara online.</p> --}}
                 </div>
-                <!-- Form Section -->
-                <form class="space-y-6">
 
-                    <div class=" p-3 md:p-4 mb-8">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <!-- Left Column -->
-                            <!-- Data Pemilik Section -->
-                            <div class="">
-                                <div
-                                    class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
-                                    <h2 class="text-lg font-bold text-white">1. Data Pemilik</h2>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pemilik</label>
-                                        <input type="text"
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            placeholder="Masukkan nama pemilik">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nomor KTP</label>
-                                        <input type="text"
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            placeholder="Masukkan nomor KTP">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nomor
-                                            WhatsApp</label>
-                                        <input type="tel"
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            placeholder="Masukkan nomor WhatsApp">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Right Column -->
-                            <!-- Data Kendaraan Section -->
-                            <div class="">
-                                <div
-                                    class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
-                                    <h2 class="text-lg font-bold text-white">2. Data Kendaraan</h2>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Polisi</label>
-                                        <input type="text"
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            placeholder="Masukkan nomor polisi">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Uji</label>
-                                        <input type="text"
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            placeholder="Masukkan nomor mesin">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Layanan</label>
-                                        <select
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                            <option value="">Pilih Tanggal</option>
-                                            <option value="baru">16 Maret 2025 - Sisa 20</option>
-                                            <option value="berkala">17 Maret 2025 - Sisa 13</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 mx-auto justify-center items-center gap-4">
+                    <a href="{{ route('baru') }}"
+                        class="items-center px-8 py-5 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                        1. Uji Baru
+                    </a>
+                    <a href="{{ route('berkala') }}"
+                        class="items-center px-8 py-5 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                        2. Uji Perpanjangan
+                    </a>
+                    <a href="{{ route('mutasimasuk') }}"
+                        class="items-center px-8 py-5 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                        3. Mutasi Masuk
+                    </a>
+                    <a href="{{ route('mutasikeluar') }}"
+                        class="items-center px-8 py-5 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                        4. Mutasi Keluar
+                    </a>
+                    <a href="{{ route('numpangmasuk') }}"
+                        class="items-center px-8 py-5 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                        5. Numpang Masuk
+                    </a>
+                    <a href="{{ route('numpangkeluar') }}"
+                        class="items-center px-8 py-5 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                        6. Numpang Keluar
+                    </a>
+                    <a href="{{ route('ubah') }}"
+                        class="items-center px-8 py-5 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                        7. Perubahan
+                    </a>
+                    <a href="{{ route('hilangrusak') }}"
+                        class="items-center px-8 py-5 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                        8. Lainnya
+                    </a>
+                </div>
 
 
-                    <div class="p-3 md:p-4 mb-8">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <!-- Left Column -->
-                            <!-- Data Pengujian Section -->
-                            <div class="pb-4">
-                                <div
-                                    class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
-                                    <h2 class="text-lg font-bold text-white">3. Dokumen Persyaratan</h2>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Jenis
-                                            Layanan</label>
-                                        <select
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                            <option value="">Pilih Jenis Layanan</option>
-                                            <option value="baru">Baru</option>
-                                            <option value="berkala">Berkala</option>
-                                            <option value="mutasi_keluar">Mutasi Keluar</option>
-                                            <option value="mutasi_masuk">Mutasi Masuk</option>
-                                            <option value="numpang_keluar">Numpang Keluar</option>
-                                            <option value="numpang_masuk">Numpang Masuk</option>
-                                            <option value="hilang">Cetak Hilang</option>
-                                            <option value="rusak">Cetak Rusak</option>
-                                            <option value="perubahan">Ubah Sifat/Bentuk</option>
-                                            <option value="lainnya">Lainnya (Rusak/Hilang)</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal
-                                            Pengujian</label>
-                                        <input type="date"
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div class="flex justify-end space-x-3">
-                        <button type="button"
-                            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Batal
-                        </button>
-                        <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                            Daftar
-                        </button>
-                    </div>
-
-                </form>
             </div>
 
 
