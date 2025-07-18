@@ -98,10 +98,10 @@
                                 class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-50">
                                 <div class="px-4 py-2">
                                     <p class="text-md font-medium">User Name</p>
-                                    <p class="text-sm opacity-70">User Role</p>
+                                    <p class="text-sm opacity-70">Admin</p>
                                 </div>
 
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     <div class="flex items-center">
                                         <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
@@ -112,7 +112,7 @@
                                         </svg>
                                         Settings
                                     </div>
-                                </a>
+                                </a> --}}
 
                                 <div class="border-t border-gray-100"></div>
 
