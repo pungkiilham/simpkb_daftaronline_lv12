@@ -5,13 +5,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home2');
 })->name('home2');
-Route::get('/status', function () {
-    return view('status');
-})->name('status');
+// Route::get('/status', function () {
+//     return view('status');
+// })->name('status');
 
-Route::get('/daftar', function () {
-    return view('daftar');
-})->name('daftar');
+// Route::get('/daftar', function () {
+//     return view('daftar');
+// })->name('daftar');
 
 Route::get('/login', function () {
     return view('login');

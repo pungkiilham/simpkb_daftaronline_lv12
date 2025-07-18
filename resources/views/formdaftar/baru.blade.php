@@ -18,7 +18,6 @@
                     layanan di UPT. Pengujian Kendaaran Bermotor Kota Batu secara online.
                 </p>
             </div>
-
         </div>
     </div>
 
@@ -41,7 +40,7 @@
                             <div class="">
                                 <div
                                     class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
-                                    <h2 class="text-lg font-bold text-white">1. Data Pemilik</h2>
+                                    <h2 class="text-lg font-bold text-white">1. Data Kendaraan</h2>
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
@@ -58,22 +57,11 @@
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Nomor
-                                            WhatsApp</label>
+                                            Telepon</label>
                                         <input type="tel"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
                                             placeholder="Masukkan nomor WhatsApp">
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- Right Column -->
-                            <!-- Data Kendaraan Section -->
-                            <div class="">
-                                <div
-                                    class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
-                                    <h2 class="text-lg font-bold text-white">2. Data Kendaraan</h2>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Polisi</label>
                                         <input type="text"
@@ -86,103 +74,27 @@
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
                                             placeholder="Masukkan nomor mesin">
                                     </div>
-
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1 mt-4">Tanggal
-                                        Layanan</label>
-                                    <select
-                                        class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                        <option value="">Pilih Tanggal</option>
-                                        <option value="baru">16 Maret 2025 - Sisa 20</option>
-                                        <option value="berkala">17 Maret 2025 - Sisa 13</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="p-3 md:p-4 mb-8">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <!-- Left Column -->
-                            <!-- Dokumen Persyaratan Section -->
-                            <div class="pb-4">
-                                <div
-                                    class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
-                                    <h2 class="text-lg font-bold text-white">3. Dokumen Persyaratan</h2>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Jenis
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal
                                             Layanan</label>
                                         <select
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                            <option value="">Pilih Jenis Layanan</option>
-                                            <option value="baru">Daftar Baru</option>
-                                            <option value="berkala">Uji Perpanjangan/Berkala</option>
-                                            <option value="mutasi_keluar">Mutasi Keluar</option>
-                                            <option value="mutasi_masuk">Mutasi Masuk</option>
-                                            <option value="numpang_keluar">Numpang Uji Keluar</option>
-                                            <option value="numpang_masuk">Numpang Uji Masuk</option>
-                                            {{-- <option value="hilang">Cetak Hilang</option>
-                                            <option value="rusak">Cetak Rusak</option> --}}
-                                            <option value="perubahan">Ubah Sifat/Bentuk</option>
-                                            <option value="lainnya">Lainnya (Rusak/Hilang)</option>
+                                            <option value="">Pilih Tanggal</option>
+                                            <option value="baru">16 Maret 2025 - Sisa 20</option>
+                                            <option value="berkala">17 Maret 2025 - Sisa 13</option>
                                         </select>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Surat Kuasa (Jika
-                                            dikuasakan)</label>
-                                        <input type="file"
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                        <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
-                                            (Max 2MB)</label>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">STNK
-                                            Kendaraan</label>
-                                        <input type="file"
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                        <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
-                                            (Max 2MB)</label>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Kartu Blue</label>
-                                        <input type="file"
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                        <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
-                                            (Max 2MB)</label>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Right Column -->
-                            <!-- Dokumen Persyaratan Khusus Section -->
-                            <div class="pb-4">
+                            <!-- Dokumen Persyaratan Section -->
+                            <div class="">
                                 <div
                                     class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
-                                    <h2 class="text-lg font-bold text-white">4. Dokumen Persyaratan Khusus</h2>
+                                    <h2 class="text-lg font-bold text-white">2. Dokumen Persyaratan</h2>
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Jenis
-                                            Layanan</label>
-                                        <select
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                            <option value="">Pilih Jenis Layanan</option>
-                                            <option value="baru">Daftar Baru</option>
-                                            <option value="berkala">Uji Perpanjangan/Berkala</option>
-                                            <option value="mutasi_keluar">Mutasi Keluar</option>
-                                            <option value="mutasi_masuk">Mutasi Masuk</option>
-                                            <option value="numpang_keluar">Numpang Uji Keluar</option>
-                                            <option value="numpang_masuk">Numpang Uji Masuk</option>
-                                            {{-- <option value="hilang">Cetak Hilang</option>
-                                            <option value="rusak">Cetak Rusak</option> --}}
-                                            <option value="perubahan">Ubah Sifat/Bentuk</option>
-                                            <option value="lainnya">Lainnya (Rusak/Hilang)</option>
-                                        </select>
-                                    </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Surat Kuasa (Jika
                                             dikuasakan)</label>
@@ -200,7 +112,21 @@
                                             (Max 2MB)</label>
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Kartu Blue</label>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">SRUT</label>
+                                        <input type="file"
+                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
+                                        <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
+                                            (Max 2MB)</label>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Izin Trayek (MPU, Mikrolet, Bus)</label>
+                                        <input type="file"
+                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
+                                        <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
+                                            (Max 2MB)</label>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Tera (Mobil Tangki)</label>
                                         <input type="file"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
                                         <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
@@ -213,10 +139,10 @@
 
                     <!-- Submit Button -->
                     <div class="flex justify-end space-x-3">
-                        <button type="button"
+                        <a type="button" href="/"
                             class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Batal
-                        </button>
+                        </a>
                         <button type="submit"
                             class="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                             Daftar
