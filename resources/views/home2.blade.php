@@ -1,6 +1,5 @@
 @include('layouts.head')
 
-</html>
 
 {{-- @include('layouts.head') --}}
 

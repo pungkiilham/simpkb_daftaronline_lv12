@@ -15,7 +15,9 @@
                 <p class="mt-1 text-gray-600">Sistem Informasi Manajemen PKB</p>
             </div>
 
-            <form class="space-y-6">
+            <form class="space-y-6" method="POST" action="{{ route('login') }}">
+                @csrf
+
                 <div>
                     <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
                     <input type="text" name="username" id="username" placeholder="Masukkan Username"
@@ -28,7 +30,7 @@
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#1a237e] focus:border-[#1a237e]">
                 </div>
                 <div>
-                    <button type="button"
+                    <button type="submit"
                         class="w-full flex justify-center py-2 px-4 mb-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#1a237e] hover:bg-[#283593] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1a237e]">
                         Masuk
                     </button>

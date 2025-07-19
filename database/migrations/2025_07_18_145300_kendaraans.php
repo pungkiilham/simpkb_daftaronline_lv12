@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('nama')->nullable();
             $table->string('ktp')->nullable();
             $table->date('tanggal_layanan')->nullable();
-            $table->tinyInteger('active')->default(0);
+            $table->tinyInteger('status_pendaftaran')->nullable();
+            $table->string('keterangan_ditolak', 500)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('kendaraans');
     }
 };

@@ -11,9 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dokumens', function (Blueprint $table) {
+        Schema::create('pendaftaran_onlines', function (Blueprint $table) {
             $table->string('id', 36)->primary();
-            $table->string('id_kendaraan', 36)->nullable();
+
+            $table->string('nopol')->nullable();
+            $table->string('nouji')->nullable();
+            $table->string('nama')->nullable();
+            $table->string('ktp')->nullable();
+            $table->date('tanggal_layanan')->nullable();
+            $table->tinyInteger('status_pendaftaran')->nullable();
+            $table->string('keterangan_ditolak', 500)->nullable();
+
             $table->string('surat_kuasa')->nullable();
             $table->string('stnk')->nullable();
             $table->string('srut')->nullable();
@@ -24,7 +32,7 @@ return new class extends Migration
             $table->string('surat_keterangan')->nullable();
             $table->string('izin_trayek')->nullable();
             $table->string('tera')->nullable();
-            // $table->tinyInteger('active')->default(1);
+
             $table->timestamps();
         });
     }
@@ -34,7 +42,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dokumens');
+        Schema::dropIfExists('pendaftaran_onlines');
 
     }
 };
