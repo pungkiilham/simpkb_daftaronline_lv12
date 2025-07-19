@@ -3,18 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home2');
+    return view('pages.home2');
 })->name('home2');
-// Route::get('/status', function () {
-//     return view('status');
-// })->name('status');
-
-// Route::get('/daftar', function () {
-//     return view('daftar');
-// })->name('daftar');
 
 Route::get('/login', function () {
-    return view('login');
+    return view('pages.auth.login');
 })->name('login');
 
 
@@ -22,41 +15,41 @@ Route::get('/login', function () {
 
 // Form daftar
 Route::get('/baru', function () {
-    return view('formdaftar.baru');
+    return view('pages.formdaftar.baru');
 })->name('baru');
 
 Route::get('/berkala', function () {
-    return view('formdaftar.berkala');
+    return view('pages.formdaftar.berkala');
 })->name('berkala');
 
 Route::get('/hilangrusak', function () {
-    return view('formdaftar.hilangrusak');
+    return view('pages.formdaftar.hilangrusak');
 })->name('hilangrusak');
 
 Route::get('/mutasikeluar', function () {
-    return view('formdaftar.mutasikeluar');
+    return view('pages.formdaftar.mutasikeluar');
 })->name('mutasikeluar');
 
 Route::get('/mutasimasuk', function () {
-    return view('formdaftar.mutasimasuk');
+    return view('pages.formdaftar.mutasimasuk');
 })->name('mutasimasuk');
 
 Route::get('/numpangkeluar', function () {
-    return view('formdaftar.numpangkeluar');
+    return view('pages.formdaftar.numpangkeluar');
 })->name('numpangkeluar');
 
 Route::get('/numpangmasuk', function () {
-    return view('formdaftar.numpangmasuk');
+    return view('pages.formdaftar.numpangmasuk');
 })->name('numpangmasuk');
 
 Route::get('/ubah', function () {
-    return view('formdaftar.ubah');
+    return view('pages.formdaftar.ubah');
 })->name('ubah');
 
 
 // Admin -> Auth
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('pages.admin.dashboard');
 })->name('dashboard');
 
 // Route::get('/dashboard', function () {

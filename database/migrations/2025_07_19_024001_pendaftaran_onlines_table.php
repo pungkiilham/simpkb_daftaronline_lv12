@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pendaftaran_onlines', function (Blueprint $table) {
             $table->string('id', 36)->primary();
 
+            $table->string('jenis_layanan')->nullable();
             $table->string('nopol')->nullable();
             $table->string('nouji')->nullable();
             $table->string('nama')->nullable();
