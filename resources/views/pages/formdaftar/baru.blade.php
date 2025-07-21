@@ -25,14 +25,25 @@
     <div class="bg-white rounded-xl shadow-lg p-3 md:p-4">
         <div class="py-10 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 {{-- <div class="text-center mb-12">
                     <h2 class="text-3xl font-extrabold text-[#1a237e]">Daftar Layanan Daftar Baru</h2>
                     <p class="mt-4 text-lg text-gray-600">Silahkan untuk melengkapi data dibawah ini untuk mendaftar
                         layanan di UPT. Pengujian Kendaaran Bermotor Kota Batu secara online.</p>
                 </div> --}}
                 <!-- Form Section -->
-                <form class="space-y-6">
-
+                {{-- <form class="space-y-6" action="{{ route('pendaftaran') }}" method="POST" enctype="multipart/form-data"> --}}
+                <form class="space-y-6" action="{{ route('daftar.baru') }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
                     <div class=" p-3 md:p-4 mb-8">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <!-- Left Column -->
@@ -45,32 +56,32 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pemilik</label>
-                                        <input type="text"
+                                        <input type="text" id="nama" name="nama"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
                                             placeholder="Masukkan nama pemilik">
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Nomor KTP</label>
-                                        <input type="text"
+                                        <input type="text" id="ktp" name="ktp"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
                                             placeholder="Masukkan nomor KTP">
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Nomor
                                             Telepon</label>
-                                        <input type="tel"
+                                        <input type="text" id="telpon" name="telpon"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
                                             placeholder="Masukkan nomor WhatsApp">
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Polisi</label>
-                                        <input type="text"
+                                        <input type="text" id="nopol" name="nopol"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
                                             placeholder="Masukkan nomor polisi">
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Uji</label>
-                                        <input type="text"
+                                        <input type="text" id="nouji" name="nouji"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
                                             placeholder="Masukkan nomor mesin">
                                     </div>
@@ -98,7 +109,7 @@
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Surat Kuasa (Jika
                                             dikuasakan)</label>
-                                        <input type="file"
+                                        <input type="file" id="surat_kuasa" name="surat_kuasa"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
                                         <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
                                             (Max 2MB)</label>
@@ -119,14 +130,16 @@
                                             (Max 2MB)</label>
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Izin Trayek (MPU, Mikrolet, Bus)</label>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Izin Trayek (MPU,
+                                            Mikrolet, Bus)</label>
                                         <input type="file"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
                                         <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
                                             (Max 2MB)</label>
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Tera (Mobil Tangki)</label>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Tera (Mobil
+                                            Tangki)</label>
                                         <input type="file"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
                                         <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG

@@ -169,8 +169,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($pendaftaran as $k)
-                            <tr class="hover:bg-gray-50 transition-colors">
-
+                                <tr class="hover:bg-gray-50 transition-colors">
                                     <td class="px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
                                         {{ $loop->iteration }}</td>
                                     <td class="px-2 py-2 text-sm text-gray-900">
@@ -184,30 +183,63 @@
                                             <span>{{ $k->nouji }}</span>
                                         </div>
                                     </td>
-                                    <td
-                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        Numpang Masuk</td>
+                                    @if ($k->jenis_layanan == 1)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Baru</td>
+                                    @elseif ($k->jenis_layanan == 2)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Berkala</td>
+                                    @elseif ($k->jenis_layanan == 3)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Mutasi Masuk</td>
+                                    @elseif ($k->jenis_layanan == 4)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Mutasi Keluar</td>
+                                    @elseif ($k->jenis_layanan == 5)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Numpang Masuk</td>
+                                    @elseif ($k->jenis_layanan == 6)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Numpang Keluar</td>
+                                    @elseif ($k->jenis_layanan == 7)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Perubahan</td>
+                                    @elseif ($k->jenis_layanan == 8)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Lainnya</td>
+                                    @else
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            -</td>
+                                    @endif
                                     <td
                                         class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        {{-- {{ $k->tanggal_layanan }}</td> --}}
                                         {{ date('d-m-Y', strtotime($k->tanggal_layanan)) }}</td>
 
-                                        @if($k->status_pendaftaran == null || $k->status_pendaftaran == 0)
+                                    @if ($k->status_pendaftaran == null || $k->status_pendaftaran == 0)
                                         <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
                                             <span
                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Belum</span>
                                         </td>
-                                        @elseif($k->status_pendaftaran == 2)
+                                    @elseif($k->status_pendaftaran == 2)
                                         <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
                                             <span
                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Ditolak</span>
                                         </td>
-                                        @elseif($k->status_pendaftaran == 1)
+                                    @elseif($k->status_pendaftaran == 1)
                                         <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
                                             <span
                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Diterima</span>
                                         </td>
-                                        @endif
+                                    @endif
                                     <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
                                         <div class="flex justify-center items-center space-x-2">
                                             <a href="#" class="text-blue-600 hover:text-blue-800" title="Lihat">
@@ -222,7 +254,7 @@
                                         </div>
                                     </td>
 
-                            </tr>
+                                </tr>
                             @endforeach
                             {{-- <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">1</td>

@@ -25,6 +25,7 @@ class PendaftaranOnline extends Model
         'nouji',
         'nama',
         'ktp',
+        'telpon',
         'tanggal_layanan',
         'status_pendaftaran',
         'keterangan_ditolak',

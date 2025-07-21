@@ -18,6 +18,8 @@ Route::get('/login', function () {
 Route::get('/baru', function () {
     return view('pages.formdaftar.baru');
 })->name('baru');
+Route::post('baru', [PendaftaranController::class, 'baru'])->name('daftar.baru');
+
 
 Route::get('/berkala', function () {
     return view('pages.formdaftar.berkala');

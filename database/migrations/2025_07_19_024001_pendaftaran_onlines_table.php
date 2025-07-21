@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('nouji')->nullable();
             $table->string('nama')->nullable();
             $table->string('ktp')->nullable();
+            $table->string('telpon')->nullable();
             $table->date('tanggal_layanan')->nullable();
             $table->tinyInteger('status_pendaftaran')->nullable();
             $table->string('keterangan_ditolak', 500)->nullable();
