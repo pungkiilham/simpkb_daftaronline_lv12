@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('setting_pendaftarans', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('jml_max')->nullable();
-            $table->tinyInteger('batas_pendaftaran')->nullable();
+            $table->dateTime('batas_pendaftaran')->nullable();
             $table->timestamps();
         });
     }

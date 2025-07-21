@@ -22,7 +22,7 @@
             Dashboard
         </a>
 
-        <a href="/laporanpelayanan"
+        <a href="{{ route('laporan') }}"
             class="flex items-center px-3 py-2 text-sm font-medium rounded-lg text-white hover:bg-white/10">
             <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -30,7 +30,7 @@
             </svg>
             Laporan Antrian
         </a>
-        <a href="/pengaturanrole"
+        <a href="{{ route('pengaturan') }}"
             class="flex items-center px-3 py-2 text-sm font-medium rounded-lg text-white hover:bg-white/10">
             <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -38,16 +38,16 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            Pengaturan Antrian
+            Pengaturan
         </a>
-        <a href="/pengaturanuser"
+        {{-- <a href="/pengaturanuser"
             class="flex items-center px-3 py-2 text-sm font-medium rounded-lg text-white hover:bg-white/10">
             <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
             Manajemen User
-        </a>
+        </a> --}}
 
 
     </div>

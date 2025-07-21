@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('pages.home2');
+    return view('home2');
 })->name('home2');
 
 Route::get('/login', function () {
@@ -52,6 +52,17 @@ Route::get('/dashboard', function () {
     return view('pages.admin.dashboard');
 })->name('dashboard');
 
+
+// Admin -> Auth
+Route::get('/dashboard', function () {
+    return view('pages.admin.dashboard');
+})->name('dashboard');
+Route::get('/laporan', function () {
+    return view('pages.admin.laporan');
+})->name('laporan');
+Route::get('/pengaturan', function () {
+    return view('pages.admin.pengaturan');
+})->name('pengaturan');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

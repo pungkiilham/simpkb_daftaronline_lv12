@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="p-1 md:p-3">
+        laporan
         <!-- Header -->
         <div class="mb-6 md:mb-8">
             <div class="flex items-center mb-2">
@@ -18,7 +19,7 @@
         </div>
 
         <!-- Statistics Cards -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
+        {{-- <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
             <!-- Total Kendaraan -->
             <div
                 class="bg-gradient-to-br from-indigo-500 via-blue-500 to-blue-600 rounded-xl shadow-lg p-4 md:p-6 hover:shadow-xl transition-shadow">
@@ -95,7 +96,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Main Content -->
         <div class="bg-white rounded-xl shadow-lg p-3 md:p-4">
@@ -236,4 +237,5 @@
                 </div>
             </div> --}}
         </div>
+    </div>
     @endsection
