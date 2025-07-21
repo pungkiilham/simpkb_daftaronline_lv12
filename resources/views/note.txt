@@ -1,0 +1,27 @@
+status_pendaftaran
+-> belum = 0 || null
+-> ditolak = 2
+-> diterima = 1
+
+jenis_pengujian
+-> baru = 1
+-> berkala = 2
+-> mutasi masuk = 3
+-> mutasi keluar = 4
+-> numpang masuk = 5
+-> numpang keluar = 6
+-> perubahan = 7
+-> lainnya = 8
+
+
+
+progress
+home
+-> cek status ??
+
+daftar
+-> uji baru =
+
+dashboard
+-> view table = done
+-> verifikasi per kendaraan ??

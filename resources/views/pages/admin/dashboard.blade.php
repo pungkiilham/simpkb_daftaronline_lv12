@@ -168,7 +168,63 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach ($pendaftaran as $k)
                             <tr class="hover:bg-gray-50 transition-colors">
+
+                                    <td class="px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        {{ $loop->iteration }}</td>
+                                    <td class="px-2 py-2 text-sm text-gray-900">
+                                        <div class="flex flex-col">
+                                            <span class="font-medium">{{ $k->nama }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-2 py-2 text-sm text-gray-900">
+                                        <div class="flex flex-col space-y-1 text-center">
+                                            <span>{{ $k->nopol }}</span>
+                                            <span>{{ $k->nouji }}</span>
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        Numpang Masuk</td>
+                                    <td
+                                        class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        {{-- {{ $k->tanggal_layanan }}</td> --}}
+                                        {{ date('d-m-Y', strtotime($k->tanggal_layanan)) }}</td>
+
+                                        @if($k->status_pendaftaran == null || $k->status_pendaftaran == 0)
+                                        <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Belum</span>
+                                        </td>
+                                        @elseif($k->status_pendaftaran == 2)
+                                        <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Ditolak</span>
+                                        </td>
+                                        @elseif($k->status_pendaftaran == 1)
+                                        <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Diterima</span>
+                                        </td>
+                                        @endif
+                                    <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
+                                        <div class="flex justify-center items-center space-x-2">
+                                            <a href="#" class="text-blue-600 hover:text-blue-800" title="Lihat">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </td>
+
+                            </tr>
+                            @endforeach
+                            {{-- <tr class="hover:bg-gray-50 transition-colors">
                                 <td class="px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">1</td>
                                 <td class="px-2 py-2 text-sm text-gray-900">
                                     <div class="flex flex-col">
@@ -204,7 +260,7 @@
                                         </a>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
