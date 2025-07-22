@@ -32,23 +32,24 @@ class PendaftaranController extends Controller
 
     public function baru_index(Request $request)
     {
-        $day1 = Carbon::now()->addDays(1)->translatedFormat('d F Y');
-        $day2 = Carbon::now()->addDays(2);
-        $day3 = Carbon::now()->addDays(3);
+        $day1 = Carbon::now()->addDays(1)->translatedFormat('Y-m-d');
+        $day2 = Carbon::now()->addDays(2)->translatedFormat('d M Y');
+        $day3 = Carbon::now()->addDays(3)->translatedFormat('d M Y');
 
         $num_qued1 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day1)->count();
         $num_qued2 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day2)->count();
         $num_qued3 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day3)->count();
 
-        // $que_max = (int) DB::table('setting_pendaftarans')->where('jml_max');
+        // $que_max = DB::table('setting_pendaftarans')->where('jml_max');
+        $que_max = 20;
 
-        // $sisa1 = $que_max - $num_qued1;
-        // $sisa2 = $que_max - $num_qued2;
-        // $sisa3 = $que_max - $num_qued3;
+        $sisa1 = 20 - $num_qued1;
+        $sisa2 = $que_max - $num_qued2;
+        $sisa3 = $que_max - $num_qued3;
 
-        // dd($sisa1, $sisa2, $sisa3);
+        dd($num_qued1, $num_qued2, $num_qued3, $sisa1, $sisa2, $sisa3);
 
-        return view('pages.formdaftar.baru', compact('day1', 'day2','day3'));
+        return view('pages.formdaftar.baru', compact('day1', 'day2','day3','sisa1','sisa2','sisa3'));
     }
 
     public function baru(Request $request)
