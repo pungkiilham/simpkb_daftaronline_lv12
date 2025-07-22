@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\PendaftaranOnline;
+use Cron\DayOfWeekField;
+use DateTime;
 use Dotenv\Store\File\Paths;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
@@ -27,23 +29,56 @@ class PendaftaranController extends Controller
         return view('pages.admin.dashboard', compact('pendaftaran'));
     }
 
+    public function baru_index(Request $request)
+    {
+        $day_now = Carbon::now();
+        $day1 = Carbon::now()->addDays(1);
+        $day2 = Carbon::now()->addDays(2);
+        $day3 = Carbon::now()->addDays(3);
+
+        $num_qued1 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day1)->count();
+        $num_qued2 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day2)->count();
+        $num_qued3 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day3)->count();
+
+        $que_max = DB::table('setting_pendaftarans')->where('jml_max');
+
+        $sisa1 = (int) $que_max - $num_qued1;
+        $sisa2 = (int) $que_max - $num_qued2;
+        $sisa3 = (int) $que_max - $num_qued3;
+
+        dd($sisa1, $sisa2, $sisa3);
+
+    }
+
     public function baru(Request $request)
     {
+        $day_now = Carbon::now();
+        $day1 = Carbon::now()->addDays(1);
+        $day2 = Carbon::now()->addDays(2);
+        $day3 = Carbon::now()->addDays(3);
+
+        $num_qued1 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day1)->count();
+        $num_qued2 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day2)->count();
+        $num_qued3 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day3)->count();
+
+
+
+        dd($day_now, $num_qued1);
+
+
+
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
-            // 'ktp' => 'required',
-            // 'nopol' => 'required',
-            // 'nouji' => 'required',
+            'ktp' => 'required',
+            'nopol' => 'required',
+            'nouji' => 'required',
 
             'surat_kuasa' => 'mimes:jpg,jpeg,png|max:2048',
-            'stnk' => 'mimes:jpg,jpeg,png|max:2048',
-            'srut' => 'mimes:jpg,jpeg,png|max:2048',
+            'stnk' => 'required|mimes:jpg,jpeg,png|max:2048',
+            'srut' => 'required|mimes:jpg,jpeg,png|max:2048',
             'izin_trayek' => 'mimes:jpg,jpeg,png|max:2048',
             'tera' => 'mimes:jpg,jpeg,png|max:2048',
         ]);
-
-
-
 
         if ($validator) {
             $path1 = "";
@@ -51,7 +86,8 @@ class PendaftaranController extends Controller
             $path3 = "";
             $path4 = "";
             $path5 = "";
-            // $ready = 0;
+
+            // dd($request->all(), $request->files->all());
 
             $file1 = $request->file('surat_kuasa');
             if ($request->hasFile('surat_kuasa'))
@@ -73,32 +109,6 @@ class PendaftaranController extends Controller
             if ($request->hasFile('tera'))
                 $path5 = $file5->store('uploads', 'public');
 
-            // if ($request->hasFile('surat_kuasa')) {
-            //     $file1 = $request->file('surat_kuasa');
-            //     $path1 = $file1->store('uploads', 'public');
-            //     $ready = $ready++;
-            // }
-            // if ($request->hasFile('stnk')) {
-            //     $file2 = $request->file('stnk');
-            //     $path2 = $file2->store('uploads', 'public');
-            //     $ready = $ready++;
-            // }
-            // if ($request->hasFile('srut')) {
-            //     $file3 = $request->file('srut');
-            //     $path3 = $file3->store('uploads', 'public');
-            //     $ready = $ready++;
-            // }
-            // if ($request->hasFile('izin_trayek')) {
-            //     $file4 = $request->file('izin_trayek');
-            //     $path4 = $file4->store('uploads', 'public');
-            //     $ready = $ready++;
-            // }
-            // if ($request->hasFile('tera')) {
-            //     $file5 = $request->file('tera');
-            //     $path5 = $file5->store('uploads', 'public');
-            //     $ready = $ready++;
-            // }
-
 
             DB::table('pendaftaran_onlines')->insert([
                 'id' => Str::uuid(),
@@ -119,8 +129,6 @@ class PendaftaranController extends Controller
                 'updated_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
             ]);
-            // dd($ready);
-
         }
 
 

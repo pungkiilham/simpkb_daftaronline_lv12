@@ -93,7 +93,7 @@
                                         <select
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
                                             <option value="">Pilih Tanggal</option>
-                                            <option value="baru">16 Maret 2025 - Sisa 20</option>
+                                            <option value="baru">{{Carbon::now()->addDays(1)}} - {{}}</option>
                                             <option value="berkala">17 Maret 2025 - Sisa 13</option>
                                         </select>
                                     </div>
@@ -113,38 +113,38 @@
                                             dikuasakan)</label>
                                         <input type="file" id="surat_kuasa" name="surat_kuasa"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                        <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
+                                        <label class="block text-sm  text-gray-500 mb-1">Format: JPG, JPEG, PNG
                                             (Max 2MB)</label>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">STNK
                                             Kendaraan</label>
-                                        <input type="file"
+                                        <input type="file" id="stnk" name="stnk"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                        <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
+                                        <label class="block text-sm  text-gray-500 mb-1">Format: JPG, JPEG, PNG
                                             (Max 2MB)</label>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">SRUT</label>
-                                        <input type="file"
+                                        <input type="file" id="srut" name="srut"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                        <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
+                                        <label class="block text-sm  text-gray-500 mb-1">Format: JPG, JPEG, PNG
                                             (Max 2MB)</label>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Izin Trayek (MPU,
                                             Mikrolet, Bus)</label>
-                                        <input type="file"
+                                        <input type="file" id="izin_trayek" name="izin_trayek"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                        <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
+                                        <label class="block text-sm  text-gray-500 mb-1">Format: JPG, JPEG, PNG
                                             (Max 2MB)</label>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Tera (Mobil
                                             Tangki)</label>
-                                        <input type="file"
+                                        <input type="file" id="tera" name="tera"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                        <label class="block text-sm  text-gray-500 mb-1">Format: PDF, JPG, JPEG, PNG
+                                        <label class="block text-sm  text-gray-500 mb-1">Format: JPG, JPEG, PNG
                                             (Max 2MB)</label>
                                     </div>
                                 </div>
