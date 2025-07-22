@@ -15,9 +15,11 @@ Route::get('/login', function () {
 
 
 // Form daftar
-Route::get('/baru', function () {
-    return view('pages.formdaftar.baru');
-})->name('baru');
+// Route::get('/baru', function () {
+//     return view('pages.formdaftar.baru');
+// })->name('baru');
+
+Route::get('baru', [PendaftaranController::class, 'baru_index'])->name('baru.index');
 Route::post('baru', [PendaftaranController::class, 'baru'])->name('daftar.baru');
 
 

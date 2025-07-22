@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\PendaftaranOnline;
+use Brick\Math\BigInteger;
 use Cron\DayOfWeekField;
 use DateTime;
 use Dotenv\Store\File\Paths;
@@ -31,8 +32,7 @@ class PendaftaranController extends Controller
 
     public function baru_index(Request $request)
     {
-        $day_now = Carbon::now();
-        $day1 = Carbon::now()->addDays(1);
+        $day1 = Carbon::now()->addDays(1)->translatedFormat('d F Y');
         $day2 = Carbon::now()->addDays(2);
         $day3 = Carbon::now()->addDays(3);
 
@@ -40,14 +40,15 @@ class PendaftaranController extends Controller
         $num_qued2 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day2)->count();
         $num_qued3 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day3)->count();
 
-        $que_max = DB::table('setting_pendaftarans')->where('jml_max');
+        // $que_max = (int) DB::table('setting_pendaftarans')->where('jml_max');
 
-        $sisa1 = (int) $que_max - $num_qued1;
-        $sisa2 = (int) $que_max - $num_qued2;
-        $sisa3 = (int) $que_max - $num_qued3;
+        // $sisa1 = $que_max - $num_qued1;
+        // $sisa2 = $que_max - $num_qued2;
+        // $sisa3 = $que_max - $num_qued3;
 
-        dd($sisa1, $sisa2, $sisa3);
+        // dd($sisa1, $sisa2, $sisa3);
 
+        return view('pages.formdaftar.baru', compact('day1', 'day2','day3'));
     }
 
     public function baru(Request $request)

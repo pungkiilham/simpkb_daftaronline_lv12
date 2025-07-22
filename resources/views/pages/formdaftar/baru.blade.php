@@ -26,8 +26,7 @@
         <div class="py-10 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 @if ($errors->any())
-                    <div
-                        class="bg-gradient-to-r from-red-50 to-red-200 rounded-lg px-2 py-1 mb-4">
+                    <div class="bg-gradient-to-r from-red-50 to-red-200 rounded-lg px-2 py-1 mb-4">
                         <p class="text-md md:text-xl font-bold text-red-800">Terjadi Kesalahan:</p>
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -93,7 +92,7 @@
                                         <select
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
                                             <option value="">Pilih Tanggal</option>
-                                            <option value="baru">{{Carbon::now()->addDays(1)}} - {{}}</option>
+                                            <option value={{ $day1 }}>{{ $day1 }} - Sisa {{ $day2 }} </option>
                                             <option value="berkala">17 Maret 2025 - Sisa 13</option>
                                         </select>
                                     </div>
