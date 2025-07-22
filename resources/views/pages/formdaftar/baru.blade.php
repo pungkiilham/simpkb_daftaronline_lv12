@@ -26,10 +26,12 @@
         <div class="py-10 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div
+                        class="bg-gradient-to-r from-red-50 to-red-200 rounded-lg px-2 py-1 mb-4">
+                        <p class="text-md md:text-xl font-bold text-red-800">Terjadi Kesalahan:</p>
                         <ul>
                             @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                                <li class="text-sm md:text-md text-red-800">{{ $error }}</li>
                             @endforeach
                         </ul>
                     </div>

@@ -20,7 +20,7 @@
                 </p>
                 {{-- <div class="mt-8 max-w-full grid grid-cols-1 items-center justify-center gap-4 md:gap-6"> --}}
                 {{-- <div class="mt-8 grid grid-cols-1 justify-center items-ends gap-2"> --}}
-                    <div class="w-full flex items-center justify-center">
+                <div class="w-full flex items-center justify-center">
                     <form>
                         <div
                             class="max-w-lg mt-8 justify-center items-center gap-2 bg-gray-50 rounded-xl p-8 hover:shadow-xl transition duration-300 border border-gray-200">
@@ -41,49 +41,53 @@
                             </div>
                         </div>
                     </form>
+                </div>
+                @if (session()->has('message'))
+                    <div class="bg-gradient-to-r from-green-100 to-green-400 rounded-lg px-2 py-2 mt-6">
+                        <p class="text-md md:text-xl font-bold text-green-800">{{  session()->get('message') }}</p>
                     </div>
-
-                    <div
-                        class="w-full px-8 md:py-12 mt-8 justify-center items-center gap-2 bg-gray-50 rounded-xl p-8 hover:shadow-xl transition duration-300 border border-gray-200">
-                        <h2 class="text-xl md:text-2xl font-bold text-[#1a237e] mb-4">Pilih Layanan Kami Disini</h2>
-                        <div class="grid grid-cols-2 md:grid-cols-4 justify-center items-center gap-2">
-                            <a href="{{ route('baru') }}"
-                                class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
-                                1. Uji Baru
-                            </a>
-                            <a href="{{ route('berkala') }}"
-                                class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
-                                2. Uji Perpanjangan
-                            </a>
-                            <a href="{{ route('mutasimasuk') }}"
-                                class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
-                                3. Mutasi Masuk
-                            </a>
-                            <a href="{{ route('mutasikeluar') }}"
-                                class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
-                                4. Mutasi Keluar
-                            </a>
-                            <a href="{{ route('numpangmasuk') }}"
-                                class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
-                                5. Numpang Masuk
-                            </a>
-                            <a href="{{ route('numpangkeluar') }}"
-                                class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
-                                6. Numpang Keluar
-                            </a>
-                            <a href="{{ route('ubah') }}"
-                                class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
-                                7. Perubahan
-                            </a>
-                            <a href="{{ route('hilangrusak') }}"
-                                class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
-                                8. Lainnya
-                            </a>
-                        </div>
+                @endif
+                <div
+                    class="w-full px-8 md:py-12 mt-8 justify-center items-center gap-2 bg-gray-50 rounded-xl p-8 hover:shadow-xl transition duration-300 border border-gray-200">
+                    <h2 class="text-xl md:text-2xl font-bold text-[#1a237e] mb-4">Pilih Layanan Kami Disini</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 justify-center items-center gap-2">
+                        <a href="{{ route('baru') }}"
+                            class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                            1. Uji Baru
+                        </a>
+                        <a href="{{ route('berkala') }}"
+                            class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                            2. Uji Perpanjangan
+                        </a>
+                        <a href="{{ route('mutasimasuk') }}"
+                            class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                            3. Mutasi Masuk
+                        </a>
+                        <a href="{{ route('mutasikeluar') }}"
+                            class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                            4. Mutasi Keluar
+                        </a>
+                        <a href="{{ route('numpangmasuk') }}"
+                            class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                            5. Numpang Masuk
+                        </a>
+                        <a href="{{ route('numpangkeluar') }}"
+                            class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                            6. Numpang Keluar
+                        </a>
+                        <a href="{{ route('ubah') }}"
+                            class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                            7. Perubahan
+                        </a>
+                        <a href="{{ route('hilangrusak') }}"
+                            class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
+                            8. Lainnya
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Keunggulan Section -->
