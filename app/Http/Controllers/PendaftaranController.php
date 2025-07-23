@@ -34,32 +34,49 @@ class PendaftaranController extends Controller
     {
         //dayformat untuk
         $day1 = $day2 = $day3 = "";
+        $day1_store = $day2_store = $day3_store = "";
         if (Carbon::now()->addDays(2)->isSaturday()) {
             $more_day = 2;
             $day1 = Carbon::now()->addDays(2 + $more_day)->translatedFormat('d M Y');
             $day2 = Carbon::now()->addDays(3 + $more_day)->translatedFormat('d M Y');
             $day3 = Carbon::now()->addDays(4 + $more_day)->translatedFormat('d M Y');
+
+            $day1_store = Carbon::now()->addDays(2 + $more_day)->translatedFormat('Y-m-d');
+            $day2_store = Carbon::now()->addDays(3 + $more_day)->translatedFormat('Y-m-d');
+            $day3_store = Carbon::now()->addDays(4 + $more_day)->translatedFormat('Y-m-d');
         }
         elseif (Carbon::now()->addDays(3)->isSaturday()) {
             $more_day = 2;
             $day1 = Carbon::now()->addDays(2)->translatedFormat('d M Y');
             $day2 = Carbon::now()->addDays(3 + $more_day)->translatedFormat('d M Y');
             $day3 = Carbon::now()->addDays(4 + $more_day)->translatedFormat('d M Y');
+
+            $day1_store = Carbon::now()->addDays(2)->translatedFormat('Y-m-d');
+            $day2_store = Carbon::now()->addDays(3 + $more_day)->translatedFormat('Y-m-d');
+            $day3_store = Carbon::now()->addDays(4 + $more_day)->translatedFormat('Y-m-d');
         }
         elseif (Carbon::now()->addDays(4)->isSaturday()) {
             $more_day = 2;
             $day1 = Carbon::now()->addDays(2)->translatedFormat('d M Y');
             $day2 = Carbon::now()->addDays(3)->translatedFormat('d M Y');
             $day3 = Carbon::now()->addDays(4 + $more_day)->translatedFormat('d M Y');
+
+            $day1_store = Carbon::now()->addDays(2)->translatedFormat('Y-m-d');
+            $day2_store = Carbon::now()->addDays(3)->translatedFormat('Y-m-d');
+            $day3_store = Carbon::now()->addDays(4 + $more_day)->translatedFormat('Y-m-d');
         } else {
             $day1 = Carbon::now()->addDays(2)->translatedFormat('d M Y');
             $day2 = Carbon::now()->addDays(3)->translatedFormat('d M Y');
             $day3 = Carbon::now()->addDays(4)->translatedFormat('d M Y');
+
+            $day1_store = Carbon::now()->addDays(2)->translatedFormat('Y-m-d');
+            $day2_store = Carbon::now()->addDays(3)->translatedFormat('Y-m-d');
+            $day3_store = Carbon::now()->addDays(4)->translatedFormat('Y-m-d');
         }
 
-        $num_qued1 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day1)->count();
-        $num_qued2 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day2)->count();
-        $num_qued3 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day3)->count();
+        $num_qued1 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day1_store)->count();
+        $num_qued2 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day2_store)->count();
+        $num_qued3 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day3_store)->count();
 
         $id = 1;
         $que_max = DB::table('setting_pendaftarans')->where('id', $id)->pluck('jml_max');;
@@ -71,7 +88,11 @@ class PendaftaranController extends Controller
 
         // dd($num_qued1, $num_qued2, $num_qued3, $sisa1, $sisa2, $sisa3);
 
-        return view('pages.formdaftar.baru', compact('day1', 'day2', 'day3', 'sisa1', 'sisa2', 'sisa3'));
+        return view('pages.formdaftar.baru', compact([
+            'day1', 'day2', 'day3',
+            'day1_store', 'day2_store', 'day3_store',
+            'sisa1', 'sisa2', 'sisa3'
+        ]));
     }
 
     public function baru(Request $request)
@@ -87,7 +108,7 @@ class PendaftaranController extends Controller
 
 
 
-        dd($day_now, $num_qued1);
+        // dd($day_now, $num_qued1);
 
 
 
@@ -96,6 +117,7 @@ class PendaftaranController extends Controller
             'ktp' => 'required',
             'nopol' => 'required',
             'nouji' => 'required',
+            'tanggal_layanan' => 'required',
 
             'surat_kuasa' => 'mimes:jpg,jpeg,png|max:2048',
             'stnk' => 'required|mimes:jpg,jpeg,png|max:2048',
@@ -142,6 +164,7 @@ class PendaftaranController extends Controller
                 'nopol' => $request->nopol,
                 'nouji' => $request->nouji,
                 'jenis_layanan' => '1',
+                'tanggal_layanan' => $request->tanggal_layanan,
 
                 'surat_kuasa' => $path1,
                 'stnk' => $path2,

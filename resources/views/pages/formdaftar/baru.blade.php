@@ -89,12 +89,12 @@
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal
                                             Layanan</label>
-                                        <select
+                                        <select id="tanggal_layanan" name="tanggal_layanan"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
                                             <option value="">Pilih Tanggal</option>
-                                            <option value={{ $day1 }}>{{ $day1 }} - Sisa {{ $sisa1 }} </option>
-                                            <option value={{ $day2 }}>{{ $day2 }} - Sisa {{ $sisa2 }} </option>
-                                            <option value={{ $day3 }}>{{ $day3 }} - Sisa {{ $sisa3 }} </option>
+                                            <option value={{ $day1_store }}>{{ $day1 }} - Sisa {{ $sisa1 }} </option>
+                                            <option value={{ $day2_store }}>{{ $day2 }} - Sisa {{ $sisa2 }} </option>
+                                            <option value={{ $day3_store }}>{{ $day3 }} - Sisa {{ $sisa3 }} </option>
                                             {{-- <option value="berkala">17 Maret 2025 - Sisa 13</option> --}}
                                         </select>
                                     </div>
