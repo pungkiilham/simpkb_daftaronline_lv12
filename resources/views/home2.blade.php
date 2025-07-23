@@ -51,7 +51,7 @@
                     class="w-full px-8 md:py-12 mt-8 justify-center items-center gap-2 bg-gray-50 rounded-xl p-8 hover:shadow-xl transition duration-300 border border-gray-200">
                     <h2 class="text-xl md:text-2xl font-bold text-[#1a237e] mb-4">Pilih Layanan Kami Disini</h2>
                     <div class="grid grid-cols-2 md:grid-cols-4 justify-center items-center gap-2">
-                        <a href="{{ route('baru') }}"
+                        <a href="{{ route('baru.index') }}"
                             class="items-center px-5 py-3 shadow border border-transparent text-center font-medium rounded-md text-white bg-[#1a237e] hover:bg-gray-100 hover:text-[#1a237e] hover:border-[#1a237e]">
                             1. Uji Baru
                         </a>
