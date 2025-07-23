@@ -180,7 +180,7 @@ class PendaftaranController extends Controller
 
 
         if ($validator->fails()) {
-            return redirect()->route('baru')->with('message', 'Terjadi kesalahan')->withErrors($validator)
+            return redirect()->route('baru.index')->with('message', 'Terjadi kesalahan')->withErrors($validator)
                 ->withInput($request->all());
         } else {
             return redirect()->route('home2')->with('message', 'Daftar UJI BARU Berhasil, Silahkan Cek Secara Berkala');

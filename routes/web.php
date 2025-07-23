@@ -63,12 +63,16 @@ Route::get('/ubah', function () {
 //     return view('pages.admin.dashboard');
 // })->name('dashboard');
 Route::get('dashboard', [PendaftaranController::class, 'index'])->name('dashboard');
+Route::get('/verifikasi', function () {
+    return view('pages.admin.verifikasi');
+})->name('verifikasi');
 Route::get('/laporan', function () {
     return view('pages.admin.laporan');
 })->name('laporan');
 Route::get('/pengaturan', function () {
     return view('pages.admin.pengaturan');
 })->name('pengaturan');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
