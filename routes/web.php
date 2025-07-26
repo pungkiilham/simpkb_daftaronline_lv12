@@ -61,7 +61,10 @@ Route::get('/ubah', function () {
 // Admin -> Auth
 
 Route::get('dashboard', [PendaftaranController::class, 'index'])->name('dashboard');
-Route::get('verifikasi/{id}', [PendaftaranController::class, 'verifikasi_index'])->name('verifikasi');
+Route::get('verifikasi/{id}', [PendaftaranController::class, 'verifikasi_index'])->name('verifikasi.index');
+Route::post('verifikasi/{id}', [PendaftaranController::class, 'verifikasi'])->name('verifikasi');
+
+
 
 Route::get('/laporan', function () {
     return view('pages.admin.laporan');

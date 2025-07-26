@@ -125,6 +125,15 @@ class PendaftaranController extends Controller
             return redirect()->route('dashboard')->with('message', 'Data Tidak Ditemukan');
         }
     }
+    public function verifikasi(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'status_pendaftaran' => 'required',
+            'no_antrian',
+            'ket_ditolak',
+        ]);
+
+    }
 
     public function baru_index(Request $request)
     {

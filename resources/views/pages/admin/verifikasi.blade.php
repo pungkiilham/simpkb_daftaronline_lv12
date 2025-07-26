@@ -22,7 +22,7 @@
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Form Section -->
                 {{-- <form class="space-y-6" action={{ route('pengujian-list.save_photo', ['id' => $id]) }} enctype="multipart/form-data"> --}}
-                <form class="space-y-6">
+                <form class="space-y-6" action="{{ route('verifikasi', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-8">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -110,12 +110,8 @@
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Layanan</label>
                                         <input type="text"disabled
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            value="{{ $data->srut }}">
-                                        <img src="{{ url('public') }}/{{ $data->srut }}" alt="no foto"
-                                            class="rounded" style="width: 100%; max-width: 100px; height: auto;">
-                                        <img src="{{ Storage::disk('public')->url($data->srut) }}" alt="no foto"
-                                        {{-- <img src="{{ {{Storage::disk('public')->url('/uploads/0tVmksXxpC4wag0QYBFDqH8P3nrZkEOlCbpsZcle.png')}}" alt="no foto" --}}
-                                            class="rounded" style="width: 100%; max-width: 100px; height: auto;">
+                                            value="{{ date('d M Y', strtotime($data->tanggal_layanan)) }}">
+
                                     </div>
                                 </div>
                             </div>
@@ -131,59 +127,64 @@
 
                                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                                     <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('public/uploads') . '/' . ($data->surat_kuasa ?? '')) }}; currentImageAlt = 'Surat Kuasa Document';"
+                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->surat_kuasa ?? '')) }}; currentImageAlt = 'Surat Kuasa Document';"
                                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         1. Surat Kuasa
                                     </button>
                                     <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('public/uploads') . '/' . ($data->stnk ?? '')) }}; currentImageAlt = 'STNK Document';"
+                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->stnk ?? '')) }}; currentImageAlt = 'STNK Document';"
                                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         2. STNK
                                     </button>
                                     <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('public/uploads') . '/' . ($data->srut ?? '')) }}; currentImageAlt = 'SRUT Document';"
+                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->srut ?? '')) }}; currentImageAlt = 'SRUT Document';"
                                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         3. SRUT
                                     </button>
                                     <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('public/uploads') . '/' . ($data->fiskal ?? '')) }}; currentImageAlt = 'Fiskal Document';"
+                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->fiskal ?? '')) }}; currentImageAlt = 'Fiskal Document';"
                                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         4. Fiskal
                                     </button>
                                     <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('public/uploads') . '/' . ($data->kartu_uji ?? '')) }}; currentImageAlt = 'Kartu Uji Document';"
+                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->kartu_uji ?? '')) }}; currentImageAlt = 'Kartu Uji Document';"
                                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         5. Kartu Uji
                                     </button>
                                     <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('public/uploads') . '/' . ($data->rekom_asal ?? '')) }}; currentImageAlt = 'Rekom Asal Document';"
+                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->rekom_asal ?? '')) }}; currentImageAlt = 'Rekom Asal Document';"
                                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         6. Rekom Asal
                                     </button>
                                     <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('public/uploads') . '/' . ($data->izin_trayek ?? '')) }}; currentImageAlt = 'Izin Trayek Document';"
+                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->izin_trayek ?? '')) }}; currentImageAlt = 'Izin Trayek Document';"
                                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         7. Izin Trayek
                                     </button>
                                     <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('public/uploads') . '/' . ($data->tera ?? '')) }}; currentImageAlt = 'Tera Document';"
+                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->tera ?? '')) }}; currentImageAlt = 'Tera Document';"
                                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         8. Tera
                                     </button>
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center mt-4">
                                     <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('public/uploads') . '/' . ($data->surat_permohonan ?? '')) }}; currentImageAlt = 'Surat Permohonan Document';"
+                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->surat_permohonan ?? '')) }}; currentImageAlt = 'Surat Permohonan Document';"
                                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         9. Surat Permohonan
                                     </button>
                                     <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('public/uploads') . '/' . ($data->surat_keterangan ?? '')) }}; currentImageAlt = 'Surat Keterangan Document';"
+                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->surat_keterangan ?? '')) }}; currentImageAlt = 'Surat Keterangan Document';"
                                         class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         10. Surat Keterangan
                                     </button>
                                 </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center mt-4">
+
+                                <div
+                                    class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4 mt-6">
+                                    <h2 class="text-lg font-bold text-white">3. Hasil Verifikasi</h2>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
                                     <div>
                                         <label class="block text-sm text-left font-medium text-gray-700 mb-1">Verifikasi
                                             Pendaftaran</label>
@@ -191,15 +192,15 @@
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
                                             <option value="">Pilih Hasil</option>
                                             <option value="1">Diterima</option>
-                                            <option value="2">Ditolak</option>
+                                            <option value="0">Ditolak</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label class="block text-sm text-left font-medium text-gray-700 mb-1">Keterangan
                                             Ditolak</label>
-                                        <input type="text"
+                                        <textarea rows="3"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            placeholder="Keterangan">
+                                            placeholder="Keterangan"></textarea>
                                     </div>
                                 </div>
                             </div>
