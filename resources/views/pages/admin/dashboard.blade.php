@@ -113,16 +113,17 @@
 
                 <div class="flex justify-ends gap-6">
                     <div class="flex items-center gap-2">
-                        <label class="text-sm text-gray-600">Layanan:</label>
-                        <select
+                        <label class="text-sm text-gray-600">Tanggal Layanan:</label>
+                        <select id="tanggal_layanan" name="tanggal_layanan"
                             class="text-sm border border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
-                            <option value="all">Semua</option>
-                            <option value="baru">Baru</option>
-                            <option value="berkala">Berkala</option>
-                            <option value="numpang">Numpang</option>
-                            <option value="mutasi">Mutasi</option>
-                            <option value="perubahan">Perubahan</option>
-                            <option value="cetak">Cetak Ulang</option>
+                            <option value="semua">3 hari kedepan</option>
+                            <option value={{ $day1_store }}>{{ $day1 }}</option>
+                            <option value={{ $day2_store }}>{{ $day2 }}</option>
+                            <option value={{ $day3_store }}>{{ $day3 }}</option>
+                            {{-- <option value="berkala">16 Maret 2025</option>
+                            <option value="berkala">17 Maret 2025</option>
+                            <option value="berkala">18 Maret 2025</option> --}}
+
                         </select>
                     </div>
                     <div class="flex items-center gap-2">
@@ -175,6 +176,7 @@
                                     <td class="px-2 py-2 text-sm text-gray-900">
                                         <div class="flex flex-col">
                                             <span class="font-medium">{{ $k->nama }}</span>
+                                            <span class="font-medium">{{ $k->id }}</span>
                                         </div>
                                     </td>
                                     <td class="px-2 py-2 text-sm text-gray-900">
@@ -222,7 +224,7 @@
                                     @endif
                                     <td
                                         class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        {{ date('d-m-Y', strtotime($k->tanggal_layanan)) }}</td>
+                                        {{ date('d M Y', strtotime($k->tanggal_layanan)) }}</td>
 
                                     @if ($k->status_pendaftaran == null || $k->status_pendaftaran == 0)
                                         <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
@@ -242,7 +244,7 @@
                                     @endif
                                     <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
                                         <div class="flex justify-center items-center space-x-2">
-                                            <a href="#" class="text-blue-600 hover:text-blue-800" title="Lihat">
+                                            {{-- <a href="#" class="text-blue-600 hover:text-blue-800" title="Lihat">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -250,78 +252,23 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                         d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                 </svg>
+                                            </a> --}}
+                                            <a href="{{ route('verifikasi',  $k->id) }}"
+                                                class="text-emerald-600 hover:text-emerald-800" title="Lihat">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                    class="size-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                                </svg>
                                             </a>
                                         </div>
                                     </td>
-
                                 </tr>
                             @endforeach
-                            {{-- <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">1</td>
-                                <td class="px-2 py-2 text-sm text-gray-900">
-                                    <div class="flex flex-col">
-                                        <span class="font-medium">John Doe</span>
-                                    </div>
-                                </td>
-                                <td class="px-2 py-2 text-sm text-gray-900">
-                                    <div class="flex flex-col space-y-1 text-center">
-                                        <span>N 1234 AB</span>
-                                        <span>UJIAB123456</span>
-                                    </div>
-                                </td>
-                                <td
-                                    class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                    Numpang Masuk</td>
-                                <td
-                                    class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                    12 Agustus 2025</td>
-                                <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
-                                    <span
-                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Ditolak</span>
-                                </td>
-                                <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
-                                    <div class="flex justify-center items-center space-x-2">
-                                        <a href="#" class="text-blue-600 hover:text-blue-800" title="Lihat">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
             </div>
-
-            {{-- <!-- Pagination -->
-            <div class="flex items-center justify-between mt-4">
-                <div class="flex items-center">
-                    <label class="text-sm text-gray-600 mr-2">Baris per halaman:</label>
-                    <select
-                        class="text-sm border border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
-                        <option>25</option>
-                        <option>50</option>
-                        <option>100</option>
-                    </select>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <button
-                        class="px-3 py-1 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
-                        disabled>
-                        Previous
-                    </button>
-                    <div class="text-sm text-gray-500">Page 1 of 1</div>
-                    <button
-                        class="px-3 py-1 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
-                        disabled>
-                        Next
-                    </button>
-                </div>
-            </div> --}}
         </div>
     @endsection

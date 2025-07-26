@@ -59,13 +59,10 @@ Route::get('/ubah', function () {
 
 
 // Admin -> Auth
-// Route::get('/dashboard', function () {
-//     return view('pages.admin.dashboard');
-// })->name('dashboard');
+
 Route::get('dashboard', [PendaftaranController::class, 'index'])->name('dashboard');
-Route::get('/verifikasi', function () {
-    return view('pages.admin.verifikasi');
-})->name('verifikasi');
+Route::get('verifikasi/{id}', [PendaftaranController::class, 'verifikasi_index'])->name('verifikasi');
+
 Route::get('/laporan', function () {
     return view('pages.admin.laporan');
 })->name('laporan');

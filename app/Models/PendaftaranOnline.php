@@ -10,14 +10,15 @@ class PendaftaranOnline extends Model
     use HasFactory;
     protected $primaryKey = 'id';
 
-    public static function get_all($request, $date = null)
-    {
-        $data = PendaftaranOnline::where(['pendaftaran_onlines'])->orderBy('pendaftaran_onlines.created_at', 'desc');
-        $data = $data->get();
-        return $data;
-    }
+    // public static function get_all($request, $date = null)
+    // {
+    //     $data = PendaftaranOnline::where(['pendaftaran_onlines']);//->orderBy('pendaftaran_onlines.created_at', 'desc');
+    //     // $data = $data->get();
+    //     return $data;
+    // }
 
     protected $fillable = [
+        // 'id',
         'no_antrian_sementara',
         'no_antrian_akhir',
         'jenis_layanan',

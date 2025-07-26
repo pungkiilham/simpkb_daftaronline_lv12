@@ -13,9 +13,9 @@
                             <img src="{{ asset('assets/logodishub.png') }}" class="h-10 w-auto" alt="Logo Dishub">
                         </div>
                         <div>
-                            <h1 class="text-white text-base font-bold">SIM PKB</h1>
-                            <h1 class="text-white text-sm font-bold">Kota Batu</h1>
-                            <p class="text-xs text-white opacity-70">Versi 2.1</p>
+                            <h1 class="text-white text-base font-bold">Pendaftaran Online</h1>
+                            <h1 class="text-white text-sm font-bold">SIM PKB Kota Batu</h1>
+                            <p class="text-xs text-white opacity-70">Versi 1.0</p>
                         </div>
                     </div>
                     <!-- Close button for mobile -->
