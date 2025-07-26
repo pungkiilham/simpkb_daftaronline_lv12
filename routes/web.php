@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BaruController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\verifikasiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,8 +21,8 @@ Route::get('/login', function () {
 //     return view('pages.formdaftar.baru');
 // })->name('baru');
 
-Route::get('baru', [PendaftaranController::class, 'baru_index'])->name('baru.index');
-Route::post('baru', [PendaftaranController::class, 'baru'])->name('daftar.baru');
+Route::get('baru', [BaruController::class, 'baru_index'])->name('baru.index');
+Route::post('baru', [BaruController::class, 'baru'])->name('daftar.baru');
 
 
 Route::get('/berkala', function () {
@@ -61,8 +63,8 @@ Route::get('/ubah', function () {
 // Admin -> Auth
 
 Route::get('dashboard', [PendaftaranController::class, 'index'])->name('dashboard');
-Route::get('verifikasi/{id}', [PendaftaranController::class, 'verifikasi_index'])->name('verifikasi.index');
-Route::post('verifikasi/{id}', [PendaftaranController::class, 'verifikasi'])->name('verifikasi');
+Route::get('verifikasi/{id}', [VerifikasiController::class, 'verifikasi_index'])->name('verifikasi.index');
+Route::post('verifikasi/{id}', [VerifikasiController::class, 'verifikasi'])->name('verifikasi');
 
 
 
