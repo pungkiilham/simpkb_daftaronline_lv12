@@ -20,204 +20,235 @@
         <!-- Main Content Container with Alpine.js Data Scope -->
         <div x-data="{ isOpen: false, currentImageSrc: '', currentImageAlt: '' }" class="bg-white rounded-xl shadow-lg p-3 md:p-4 w-full">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
+
+                @if (isset($error))
+                    <div class="bg-red-200 text-red-600">
+                        {{ $error }}
+                    </div>
+                @endif
+                @if (isset($sukses))
+                    <div class="bg-green-200 text-green-600">
+                        {{ $sukses }}
+                    </div>
+                @endif
+
                 <!-- Form Section -->
                 {{-- <form class="space-y-6" action={{ route('pengujian-list.save_photo', ['id' => $id]) }} enctype="multipart/form-data"> --}}
-                <form class="space-y-6" action="{{ route('verifikasi', $data->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-8">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <!-- Left Column - Data Kendaraan Section -->
-                            <div class="">
-                                <div
-                                    class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
-                                    <h2 class="text-lg font-bold text-white">1. Data Kendaraan</h2>
+                {{-- <form class="space-y-6"
+                    action="{{ route('verifikasi', ['id' => isset($data) && $data->id ? $data->id : 0]) }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf --}}
+
+                <div class="mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Left Column - Data Kendaraan Section -->
+                        <div class="">
+                            <div
+                                class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
+                                <h2 class="text-lg font-bold text-white">1. Data Kendaraan</h2>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pemilik</label>
+                                    <input type="text" disabled
+                                        class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
+                                        value="{{ $data->nama }}">
                                 </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pemilik</label>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nomor KTP</label>
+                                    <input type="text" disabled
+                                        class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
+                                        value="{{ $data->ktp }}">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Telepon</label>
+                                    <input type="tel" disabled
+                                        class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
+                                        value="{{ $data->telpon }}">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Polisi</label>
+                                    <input type="text" disabled
+                                        class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-200 focus:ring-opacity-50 transition-all py-1 px-2"
+                                        value="{{ $data->nopol }}">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Uji</label>
+                                    <input type="text" disabled
+                                        class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
+                                        value="{{ $data->nouji }}">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Layanan</label>
+                                    @if ($data->jenis_layanan == 1)
                                         <input type="text" disabled
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            value="{{ $data->nama }}">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nomor KTP</label>
-                                        <input type="text"disabled
+                                            value="Baru">
+                                    @endif
+                                    @if ($data->jenis_layanan == 2)
+                                        <input type="text" disabled
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            value="{{ $data->ktp }}">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Telepon</label>
-                                        <input type="tel"disabled
+                                            value="Perpanjang">
+                                    @endif
+                                    @if ($data->jenis_layanan == 3)
+                                        <input type="text" disabled
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            value="{{ $data->telpon }}">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Polisi</label>
-                                        <input type="text"disabled
-                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            value="{{ $data->nopol }}">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Uji</label>
-                                        <input type="text"disabled
+                                            value="Mutasi Masuk">
+                                    @endif
+                                    @if ($data->jenis_layanan == 3)
+                                        <input type="text" disabled
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            value="{{ $data->nouji }}">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Layanan</label>
-                                        @if ($data->jenis_layanan == 1)
-                                            <input type="text"disabled
-                                                class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                                value="Baru">
-                                        @endif
-                                        @if ($data->jenis_layanan == 2)
-                                            <input type="text"disabled
-                                                class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                                value="Perpanjang">
-                                        @endif
-                                        @if ($data->jenis_layanan == 3)
-                                            <input type="text"disabled
-                                                class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                                value="Mutasi Masuk">
-                                        @endif
-                                        @if ($data->jenis_layanan == 3)
-                                            <input type="text"disabled
-                                                class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                                value="Mutasi Keluar">
-                                        @endif
-                                        @if ($data->jenis_layanan == 4)
-                                            <input type="text"disabled
-                                                class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                                value="Numpang Masuk">
-                                        @endif
-                                        @if ($data->jenis_layanan == 5)
-                                            <input type="text"disabled
-                                                class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                                value="Numpang Keluar">
-                                        @endif
-                                        @if ($data->jenis_layanan == 7)
-                                            <input type="text"disabled
-                                                class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                                value="Perubahan">
-                                        @endif
-                                        @if ($data->jenis_layanan == 9)
-                                            <input type="text"disabled
-                                                class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                                value="Lainnya">
-                                        @endif
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Layanan</label>
-                                        <input type="text"disabled
+                                            value="Mutasi Keluar">
+                                    @endif
+                                    @if ($data->jenis_layanan == 4)
+                                        <input type="text" disabled
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            value="{{ date('d M Y', strtotime($data->tanggal_layanan)) }}">
-
-                                    </div>
+                                            value="Numpang Masuk">
+                                    @endif
+                                    @if ($data->jenis_layanan == 5)
+                                        <input type="text" disabled
+                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
+                                            value="Numpang Keluar">
+                                    @endif
+                                    @if ($data->jenis_layanan == 7)
+                                        <input type="text" disabled
+                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
+                                            value="Perubahan">
+                                    @endif
+                                    @if ($data->jenis_layanan == 9)
+                                        <input type="text" disabled
+                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
+                                            value="Lainnya">
+                                    @endif
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Layanan</label>
+                                    <input type="text" disabled
+                                        class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
+                                        value="{{ date('d M Y', strtotime($data->tanggal_layanan)) }}">
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- Right Column - Dokumen Persyaratan Section -->
-                            <div class="">
-                                <div
-                                    class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
-                                    <h2 class="text-lg font-bold text-white">2. Dokumen Persyaratan</h2>
-                                </div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Klik salah satu untuk melihat
-                                    dokumen</label>
+                        <!-- Right Column - Dokumen Persyaratan Section -->
+                        <div class="">
+                            <div
+                                class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4">
+                                <h2 class="text-lg font-bold text-white">2. Dokumen Persyaratan</h2>
+                            </div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Klik salah satu untuk melihat
+                                dokumen</label>
 
-                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                                    <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->surat_kuasa ?? '')) }}; currentImageAlt = 'Surat Kuasa Document';"
-                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        1. Surat Kuasa
-                                    </button>
-                                    <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->stnk ?? '')) }}; currentImageAlt = 'STNK Document';"
-                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        2. STNK
-                                    </button>
-                                    <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->srut ?? '')) }}; currentImageAlt = 'SRUT Document';"
-                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        3. SRUT
-                                    </button>
-                                    <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->fiskal ?? '')) }}; currentImageAlt = 'Fiskal Document';"
-                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        4. Fiskal
-                                    </button>
-                                    <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->kartu_uji ?? '')) }}; currentImageAlt = 'Kartu Uji Document';"
-                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        5. Kartu Uji
-                                    </button>
-                                    <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->rekom_asal ?? '')) }}; currentImageAlt = 'Rekom Asal Document';"
-                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        6. Rekom Asal
-                                    </button>
-                                    <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->izin_trayek ?? '')) }}; currentImageAlt = 'Izin Trayek Document';"
-                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        7. Izin Trayek
-                                    </button>
-                                    <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->tera ?? '')) }}; currentImageAlt = 'Tera Document';"
-                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        8. Tera
-                                    </button>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center mt-4">
-                                    <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->surat_permohonan ?? '')) }}; currentImageAlt = 'Surat Permohonan Document';"
-                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        9. Surat Permohonan
-                                    </button>
-                                    <button type="button"
-                                        @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->surat_keterangan ?? '')) }}; currentImageAlt = 'Surat Keterangan Document';"
-                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        10. Surat Keterangan
-                                    </button>
-                                </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <button type="button"
+                                    @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->surat_kuasa ?? '')) }}; currentImageAlt = 'Surat Kuasa Document';"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    1. Surat Kuasa
+                                </button>
+                                <button type="button"
+                                    @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->stnk ?? '')) }}; currentImageAlt = 'STNK Document';"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    2. STNK
+                                </button>
+                                <button type="button"
+                                    @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->srut ?? '')) }}; currentImageAlt = 'SRUT Document';"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    3. SRUT
+                                </button>
+                                <button type="button"
+                                    @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->fiskal ?? '')) }}; currentImageAlt = 'Fiskal Document';"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    4. Fiskal
+                                </button>
+                                <button type="button"
+                                    @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->kartu_uji ?? '')) }}; currentImageAlt = 'Kartu Uji Document';"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    5. Kartu Uji
+                                </button>
+                                <button type="button"
+                                    @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->rekom_asal ?? '')) }}; currentImageAlt = 'Rekom Asal Document';"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    6. Rekom Asal
+                                </button>
+                                <button type="button"
+                                    @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->izin_trayek ?? '')) }}; currentImageAlt = 'Izin Trayek Document';"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    7. Izin Trayek
+                                </button>
+                                <button type="button"
+                                    @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->tera ?? '')) }}; currentImageAlt = 'Tera Document';"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    8. Tera
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center mt-4">
+                                <button type="button"
+                                    @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->surat_permohonan ?? '')) }}; currentImageAlt = 'Surat Permohonan Document';"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    9. Surat Permohonan
+                                </button>
+                                <button type="button"
+                                    @click="isOpen = true; currentImageSrc = {{ Js::from(url('storage') . '/' . ($data->surat_keterangan ?? '')) }}; currentImageAlt = 'Surat Keterangan Document';"
+                                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    10. Surat Keterangan
+                                </button>
+                            </div>
 
+                            <form ction={{ route('verifikasi', ['id' => $data->id]) }} enctype="multipart/form-data"
+                                method="POST">
+                                @csrf
                                 <div
                                     class="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-blue-500 rounded-lg px-2 py-1 mb-4 mt-6">
                                     <h2 class="text-lg font-bold text-white">3. Hasil Verifikasi</h2>
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
                                     <div>
-                                        <label class="block text-sm text-left font-medium text-gray-700 mb-1">Verifikasi
-                                            Pendaftaran</label>
-                                        <select id="tanggal_layanan" name="tanggal_layanan"
+                                        <label class="block text-sm text-left font-medium text-gray-700 mb-1"
+                                            for="status_pendaftaran">Verifikasi Pendaftaran</label>
+                                        <select id="status_pendaftaran" name="status_pendaftaran"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2">
-                                            <option value="">Pilih Hasil</option>
-                                            <option value="1">Diterima</option>
-                                            <option value="0">Ditolak</option>
+                                            <option value="0"
+                                                {{ isset($data->status_pendaftaran) && $data->status_pendaftaran == 0 ? 'selected' : '' }}>
+                                                Pilih Hasil</option>
+                                            <option value="1"
+                                                {{ isset($data->status_pendaftaran) && $data->status_pendaftaran == 1 ? 'selected' : '' }}>
+                                                Diterima</option>
+                                            <option value="2"
+                                                {{ isset($data->status_pendaftaran) && $data->status_pendaftaran == 2 ? 'selected' : '' }}>
+                                                Ditolak</option>
                                         </select>
+
+                                        <label class="block text-sm text-left font-medium text-gray-700 mb-1 mt-4"
+                                            for="no_antrian">No Antrian</label>
+                                        <input type="number" id="no_antrian" name="no_antrian"
+                                            class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
+                                            value="{{ $data->no_antrian ?? '' }}"> {{-- Pre-fill with data, now editable --}}
                                     </div>
                                     <div>
-                                        <label class="block text-sm text-left font-medium text-gray-700 mb-1">Keterangan
-                                            Ditolak</label>
-                                        <textarea rows="3"
+                                        <label class="block text-sm text-left font-medium text-gray-700 mb-1"
+                                            for="keterangan_ditolak">Keterangan Ditolak</label>
+                                        <textarea rows="4" id="keterangan_ditolak" name="keterangan_ditolak"
                                             class="w-full rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition-all py-1 px-2"
-                                            placeholder="Keterangan"></textarea>
+                                            placeholder="Keterangan">{{ $data->keterangan_ditolak ?? '' }}</textarea> {{-- Pre-fill with data, now editable --}}
                                     </div>
                                 </div>
-                            </div>
+                                <!-- Submit Button -->
+                                <div class="flex justify-end space-x-3">
+                                    <a type="button" href="dashboard"
+                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Batal
+                                    </a>
+                                    <button type="submit"
+                                        class="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        Simpan
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Submit Button -->
-                    <div class="flex justify-end space-x-3">
-                        <a type="button" href="dashboard"
-                            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Batal
-                        </a>
-                        <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                            Simpan
-                        </button>
-                    </div>
+
                 </form>
             </div>
 

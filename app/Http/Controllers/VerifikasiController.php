@@ -14,6 +14,7 @@ use DateTime;
 use Dotenv\Store\File\Paths;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Exists;
 use Image;
 
 class VerifikasiController extends Controller
@@ -28,30 +29,46 @@ class VerifikasiController extends Controller
             'id' => $id
         ])->exists()) {
             return view('pages.admin.verifikasi', compact([
-                'data', 'path',
+                'data',
+                'path',
             ]));
-        }
-        else{
+        } else {
             return redirect()->route('dashboard')->with('message', 'Data Tidak Ditemukan');
         }
     }
+
+
     public function verifikasi(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'status_pendaftaran' => 'required',
             'no_antrian',
             'keterangan_ditolak',
-            'tanggal_layanan',
         ]);
 
-        $antrian = DB::table('pendaftaran_onlines')->where($request->tanggal_layanan);
+        // dd($request, $id);
 
+        // $antrian = DB::table('pendaftaran_onlines')->where($request->tanggal_layanan);
+
+        // if (PendaftaranOnline::where('no_antrian', $request->no_antrian)->exists()) {
         if ($validator) {
-            DB::table('pendaftaran_onlines')->insert([
-            'status_pendaftaran' => $request->status_pendaftaran,
-            ]);
+            if ($request->status_pendaftaran == 1) {
+                DB::table('pendaftaran_onlines')->where('id', $id)->update([
+                    'status_pendaftaran' => $request->status_pendaftaran,
+                    'no_antrian' => $request->no_antrian,
+                    'keterangan_ditolak' => "",
+                ]);
+            } else {
+                DB::table('pendaftaran_onlines')->where('id', $id)->update([
+                    'status_pendaftaran' => $request->status_pendaftaran,
+                    'no_antrian' => $request->no_antrian,
+                    'keterangan_ditolak' => $request->keteragan_ditolak,
+                ]);
+            }
+            return redirect()->route('dashboard')->with('message',  'Verifikasi berhasil');
+            // return view('pages.admin.verifikasi', ['sukses' => $message]);
+        } else {
+            return view('pages.admin.verifikasi', ['message', 'Data tidak boleh kosong']);
         }
-
     }
-
 }

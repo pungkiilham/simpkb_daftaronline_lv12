@@ -15,15 +15,16 @@ return new class extends Migration
             $table->string('id', 36)->primary();
             // $table->id(uuid_time(uuid));
 
-            $table->tinyInteger('no_antrian_sementara')->nullable();
-            $table->tinyInteger('no_antrian_akhir')->nullable();
+            // $table->tinyInteger('no_antrian_sementara')->nullable();
             $table->string('jenis_layanan')->nullable();
             $table->string('nopol')->nullable();
             $table->string('nouji')->nullable();
             $table->string('nama')->nullable();
             $table->string('ktp')->nullable();
             $table->string('telpon')->nullable();
+
             $table->date('tanggal_layanan')->nullable();
+            $table->tinyInteger('no_antrian')->nullable();
             $table->tinyInteger('status_pendaftaran')->nullable();
             $table->string('keterangan_ditolak', 500)->nullable();
 

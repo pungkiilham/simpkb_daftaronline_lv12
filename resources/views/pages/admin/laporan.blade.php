@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="p-1 md:p-3">
-        laporan
         <!-- Header -->
         <div class="mb-6 md:mb-8">
             <div class="flex items-center mb-2">
@@ -12,10 +11,9 @@
                             d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                     </svg>
                 </div>
-                <h1 class="text-xl md:text-2xl font-bold text-gray-800">Dashboard Pendaftaran Online Harian</h1>
+                <h1 class="text-xl md:text-2xl font-bold text-gray-800">Laporan Pendaftaran Online Harian</h1>
             </div>
-            <p class="text-xs md:text-sm text-gray-600 ml-10 md:ml-14">Selamat datang di Sistem Informasi Manajemen
-                Pengujian Kendaraan Bermotor - Pendaftaran Online</p>
+            <p class="text-xs md:text-sm text-gray-600 ml-10 md:ml-14">Detail Laporan Seluruh Pendaftaran Online Yang Dilakukan Masyarakat</p>
         </div>
 
         <!-- Statistics Cards -->
@@ -112,7 +110,7 @@
                             </svg>
                         </div> --}}
 
-                <div class="flex justify-ends gap-6">
+                {{-- <div class="flex justify-ends gap-6">
                     <div class="flex items-center gap-2">
                         <label class="text-sm text-gray-600">Layanan:</label>
                         <select
@@ -136,7 +134,7 @@
                             <option value="rejected">Ditolak</option>
                         </select>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Table -->
@@ -162,50 +160,91 @@
                                     Tanggal Layanan</th>
                                 <th
                                     class="px-2 py-2 text-xs font-medium text-gray-700 uppercase tracking-wider text-center whitespace-nowrap">
-                                    Status</th>
+                                    No Antrian</th>
                                 <th
                                     class="px-2 py-2 text-xs font-medium text-gray-700 uppercase tracking-wider text-center whitespace-nowrap">
-                                    Aksi</th>
+                                    Status</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach ($pendaftaran as $k)
                             <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">1</td>
+                                <td class="px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                    {{ $loop->iteration }}</td>
                                 <td class="px-2 py-2 text-sm text-gray-900">
                                     <div class="flex flex-col">
-                                        <span class="font-medium">John Doe</span>
+                                        <span class="font-medium">{{ $k->nama }}</span>
+                                        {{-- <span class="font-medium">{{ $k->id }}</span> --}}
                                     </div>
                                 </td>
                                 <td class="px-2 py-2 text-sm text-gray-900">
                                     <div class="flex flex-col space-y-1 text-center">
-                                        <span>N 1234 AB</span>
-                                        <span>UJIAB123456</span>
+                                        <span>{{ $k->nopol }}</span>
+                                        <span>{{ $k->nouji }}</span>
                                     </div>
                                 </td>
-                                <td
-                                    class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                    Numpang Masuk</td>
+                                @if ($k->jenis_layanan == 1)
+                                    <td
+                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        Baru</td>
+                                @elseif ($k->jenis_layanan == 2)
+                                    <td
+                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        Berkala</td>
+                                @elseif ($k->jenis_layanan == 3)
+                                    <td
+                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        Mutasi Masuk</td>
+                                @elseif ($k->jenis_layanan == 4)
+                                    <td
+                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        Mutasi Keluar</td>
+                                @elseif ($k->jenis_layanan == 5)
+                                    <td
+                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        Numpang Masuk</td>
+                                @elseif ($k->jenis_layanan == 6)
+                                    <td
+                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        Numpang Keluar</td>
+                                @elseif ($k->jenis_layanan == 7)
+                                    <td
+                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        Perubahan</td>
+                                @elseif ($k->jenis_layanan == 8)
+                                    <td
+                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        Lainnya</td>
+                                @else
+                                    <td
+                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        -</td>
+                                @endif
                                 <td
                                     class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                    12 Agustus 2025</td>
-                                <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
-                                    <span
-                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Ditolak</span>
-                                </td>
-                                <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
-                                    <div class="flex justify-center items-center space-x-2">
-                                        <a href="#" class="text-blue-600 hover:text-blue-800" title="Lihat">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </td>
+                                    {{ date('d M Y', strtotime($k->tanggal_layanan)) }}</td>
+                                <td
+                                    class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                    {{ $k->no_antrian }}</td>
+
+                                @if ($k->status_pendaftaran == null || $k->status_pendaftaran == 0)
+                                    <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Belum</span>
+                                    </td>
+                                @elseif($k->status_pendaftaran == 2)
+                                    <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Ditolak</span>
+                                    </td>
+                                @elseif($k->status_pendaftaran == 1)
+                                    <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Diterima</span>
+                                    </td>
+                                @endif
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -238,4 +277,4 @@
             </div> --}}
         </div>
     </div>
-    @endsection
+@endsection

@@ -18,7 +18,7 @@
         </div>
 
         <!-- Statistics Cards -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
+        {{-- <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
             <!-- Total Kendaraan -->
             <div
                 class="bg-gradient-to-br from-indigo-500 via-blue-500 to-blue-600 rounded-xl shadow-lg p-4 md:p-6 hover:shadow-xl transition-shadow">
@@ -95,7 +95,13 @@
                     </div>
                 </div>
             </div>
+        </div> --}}
+
+        @if (session()->has('message'))
+        <div class="bg-gradient-to-r from-green-100 to-green-400 rounded-lg px-2 py-2 mt-6">
+            <p class="text-md md:text-xl font-bold text-green-800">{{  session()->get('message') }}</p>
         </div>
+        @endif
 
         <!-- Main Content -->
         <div class="bg-white rounded-xl shadow-lg p-3 md:p-4">
@@ -160,6 +166,9 @@
                                 <th
                                     class="hidden lg:table-cell px-2 py-2 text-xs font-medium text-gray-700 uppercase tracking-wider text-center whitespace-nowrap">
                                     Tanggal Layanan</th>
+                                    <th
+                                    class="hidden lg:table-cell px-2 py-2 text-xs font-medium text-gray-700 uppercase tracking-wider text-center whitespace-nowrap">
+                                    No. Antrian</th>
                                 <th
                                     class="px-2 py-2 text-xs font-medium text-gray-700 uppercase tracking-wider text-center whitespace-nowrap">
                                     Status</th>
@@ -176,7 +185,7 @@
                                     <td class="px-2 py-2 text-sm text-gray-900">
                                         <div class="flex flex-col">
                                             <span class="font-medium">{{ $k->nama }}</span>
-                                            <span class="font-medium">{{ $k->id }}</span>
+                                            {{-- <span class="font-medium">{{ $k->id }}</span> --}}
                                         </div>
                                     </td>
                                     <td class="px-2 py-2 text-sm text-gray-900">
@@ -225,6 +234,9 @@
                                     <td
                                         class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
                                         {{ date('d M Y', strtotime($k->tanggal_layanan)) }}</td>
+                                    <td
+                                        class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        {{ $k->no_antrian }}</td>
 
                                     @if ($k->status_pendaftaran == null || $k->status_pendaftaran == 0)
                                         <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
@@ -253,7 +265,7 @@
                                                         d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                 </svg>
                                             </a> --}}
-                                            <a href="{{ route('verifikasi.index',  $k->id) }}"
+                                            <a href="{{ route('verifikasi.index', $k->id) }}"
                                                 class="text-emerald-600 hover:text-emerald-800" title="Lihat">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"

@@ -9,6 +9,8 @@ class PendaftaranOnline extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     // public static function get_all($request, $date = null)
     // {
