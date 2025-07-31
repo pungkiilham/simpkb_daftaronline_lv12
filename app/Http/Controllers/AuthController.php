@@ -184,7 +184,7 @@ class AuthController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $user = User::find($id);
 
@@ -194,6 +194,6 @@ class AuthController extends Controller
 
         $user->delete();
 
-        return response()->json(['message' => 'Pengguna berhasil dihapus!'], 200);
+        return view('pengaturan');//response()->json(['message' => 'Pengguna berhasil dihapus!'], 200);
     }
 }

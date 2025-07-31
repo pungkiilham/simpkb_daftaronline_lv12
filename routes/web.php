@@ -77,6 +77,7 @@ Route::post('pengaturan', [SettingController::class, 'update'])->name('jml_max')
 
 
 Route::post('pengaturan/user', [AuthController::class, 'store'])->name('user.store');
+Route::get('pengaturan/user/{id}', [AuthController::class, 'delete'])->name('user.delete');
 
 
 
