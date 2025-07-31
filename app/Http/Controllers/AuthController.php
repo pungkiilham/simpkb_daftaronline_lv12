@@ -68,23 +68,23 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users', // Username must be unique
-            'password' => 'required|string|min:6|confirmed', // 'confirmed' requires password_confirmation
-            'repassword' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6', // 'confirmed' requires password_confirmation
+            'repassword' => 'required|string|min:6',
             'role' => 'required|integer|in:0,1,2', // 0: Vendor, 1: Super Admin, 2: Admin
         ], [
-            'name.required' => 'Nama pengguna wajib diisi.',
-            'username.required' => 'Username wajib diisi.',
-            'username.unique' => 'Username ini sudah digunakan.',
-            'password.required' => 'Password wajib diisi.',
-            'password.min' => 'Password minimal 8 karakter.',
-            'password.confirmed' => 'Konfirmasi password tidak cocok.',
-            'role.required' => 'Role pengguna wajib dipilih.',
-            'role.in' => 'Role pengguna tidak valid.',
+            // 'name.required' => 'Nama pengguna wajib diisi.',
+            // 'username.required' => 'Username wajib diisi.',
+            // 'username.unique' => 'Username ini sudah digunakan.',
+            // 'password.required' => 'Password wajib diisi.',
+            // 'password.min' => 'Password minimal 8 karakter.',
+            // 'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            // 'role.required' => 'Role pengguna wajib dipilih.',
+            // 'role.in' => 'Role pengguna tidak valid.',
         ]);
 
         if ($validator->fails()) {
@@ -97,10 +97,8 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password),
                 'role' => $request->role,
             ]);
+            return response()->json(['message' => 'Pengguna berhasil ditambahkan!', 'user' => $user], 201);
         }
-
-
-        return response()->json(['message' => 'Pengguna berhasil ditambahkan!', 'user' => $user], 201);
     }
 
     /**
