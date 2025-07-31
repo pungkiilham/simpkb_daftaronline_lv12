@@ -94,7 +94,7 @@ class BaruController extends Controller
         $num_qued3 = DB::table('pendaftaran_onlines')->where('tanggal_layanan', $day3_store)->count();
 
         $id = 1;
-        $que_max = DB::table('setting_pendaftarans')->where('id', $id)->pluck('jml_max');;
+        $que_max = DB::table('setting_pendaftarans')->where('id', $id)->pluck('jml_max');
         $que_max = (int) $que_max[0];
 
         $sisa1 = $que_max - $num_qued1;

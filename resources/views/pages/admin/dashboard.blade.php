@@ -97,25 +97,30 @@
             </div>
         </div> --}}
 
-        @if (session()->has('message'))
-        <div class="bg-gradient-to-r from-green-100 to-green-400 rounded-lg px-2 py-2 mt-6">
-            <p class="text-md md:text-xl font-bold text-green-800">{{  session()->get('message') }}</p>
-        </div>
+        @if (session()->has('success'))
+            <div class="bg-gradient-to-r from-green-100 to-green-400 rounded-lg px-2 py-2 mt-6">
+                <p class="text-md md:text-xl font-medium text-green-800">{{ session()->get('success') }}</p>
+            </div>
+        @endif
+        @if (session()->has('error'))
+            <div class="bg-gradient-to-r from-red-100 to-red-400 rounded-lg px-2 py-2 mt-6">
+                <p class="text-md md:text-xl font-medium text-red-800">{{ session()->get('error') }}</p>
+            </div>
         @endif
 
         <!-- Main Content -->
         <div class="bg-white rounded-xl shadow-lg p-3 md:p-4">
             <!-- Tools Section -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-4">
-                {{-- <div class="relative w-full md:w-64">
-                            <input type="text" placeholder="Cari..."
-                                class="w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20">
-                            <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </div> --}}
+            {{-- <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-4">
+                <div class="relative w-full md:w-64">
+                    <input type="text" placeholder="Cari..."
+                        class="w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+                    <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
 
                 <div class="flex justify-ends gap-6">
                     <div class="flex items-center gap-2">
@@ -126,10 +131,6 @@
                             <option value={{ $day1_store }}>{{ $day1 }}</option>
                             <option value={{ $day2_store }}>{{ $day2 }}</option>
                             <option value={{ $day3_store }}>{{ $day3 }}</option>
-                            {{-- <option value="berkala">16 Maret 2025</option>
-                            <option value="berkala">17 Maret 2025</option>
-                            <option value="berkala">18 Maret 2025</option> --}}
-
                         </select>
                     </div>
                     <div class="flex items-center gap-2">
@@ -143,7 +144,7 @@
                         </select>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Table -->
             <div class="overflow-x-auto -mx-3 md:-mx-4">
@@ -166,7 +167,7 @@
                                 <th
                                     class="hidden lg:table-cell px-2 py-2 text-xs font-medium text-gray-700 uppercase tracking-wider text-center whitespace-nowrap">
                                     Tanggal Layanan</th>
-                                    <th
+                                <th
                                     class="hidden lg:table-cell px-2 py-2 text-xs font-medium text-gray-700 uppercase tracking-wider text-center whitespace-nowrap">
                                     No. Antrian</th>
                                 <th

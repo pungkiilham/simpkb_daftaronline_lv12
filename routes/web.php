@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BaruController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\verifikasiController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +60,7 @@ Route::get('/ubah', function () {
 // Admin -> Auth
 
 Route::get('dashboard', [PendaftaranController::class, 'index'])->name('dashboard');
+
 Route::get('verifikasi/{id}', [VerifikasiController::class, 'verifikasi_index'])->name('verifikasi.index');
 Route::post('verifikasi/{id}', [VerifikasiController::class, 'verifikasi'])->name('verifikasi');
 
@@ -65,9 +68,17 @@ Route::post('verifikasi/{id}', [VerifikasiController::class, 'verifikasi'])->nam
 
 Route::get('laporan', [LaporanController::class, 'index'])->name('laporan');
 
-Route::get('/pengaturan', function () {
-    return view('pages.admin.pengaturan');
-})->name('pengaturan');
+// Route::get('/pengaturan', function () {
+//     return view('pages.admin.pengaturan');
+// })->name('pengaturan');
+
+Route::get('pengaturan', [SettingController::class, 'index'])->name('pengaturan');
+Route::post('pengaturan', [SettingController::class, 'update'])->name('jml_max');
+
+
+Route::post('pengaturan/user', [AuthController::class, 'store'])->name('user.store');
+
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

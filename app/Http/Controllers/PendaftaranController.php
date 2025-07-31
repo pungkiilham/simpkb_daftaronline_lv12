@@ -21,6 +21,104 @@ class PendaftaranController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function index2(Request $request)
+    {
+        // --- 1. Statistik Cards Data ---
+        $today = Carbon::today()->toDateString(); // Get today's date in YYYY-MM-DD format
+
+        // Total Pendaftaran Hari Ini
+        $totalToday = PendaftaranOnline::whereDate('tanggal_layanan', $today)->count();
+
+        // Pendaftaran Diterima Hari Ini (status_pendaftaran = 1)
+        $acceptedToday = PendaftaranOnline::whereDate('tanggal_layanan', $today)
+            ->where('status_pendaftaran', 1)
+            ->count();
+
+        // Pendaftaran Dalam Proses Hari Ini (status_pendaftaran = null or 0)
+        $pendingToday = PendaftaranOnline::whereDate('tanggal_layanan', $today)
+            ->where(function ($query) {
+                $query->whereNull('status_pendaftaran')
+                    ->orWhere('status_pendaftaran', 0);
+            })
+            ->count();
+
+        // Pendaftaran Ditolak Hari Ini (status_pendaftaran = 2)
+        $rejectedToday = PendaftaranOnline::whereDate('tanggal_layanan', $today)
+            ->where('status_pendaftaran', 2)
+            ->count();
+
+        // --- 2. Data untuk Filter Tanggal ---
+        $day1 = Carbon::today()->addDays(0)->isoFormat('DD MMMM YYYY'); // Today
+        $day1_store = Carbon::today()->addDays(0)->toDateString();
+
+        $day2 = Carbon::today()->addDays(1)->isoFormat('DD MMMM YYYY'); // Tomorrow
+        $day2_store = Carbon::today()->addDays(1)->toDateString();
+
+        $day3 = Carbon::today()->addDays(2)->isoFormat('DD MMMM YYYY'); // Day after tomorrow
+        $day3_store = Carbon::today()->addDays(2)->toDateString();
+
+        // --- 3. Logika Pencarian dan Filter ---
+        $query = PendaftaranOnline::query();
+
+        // Filter berdasarkan Tanggal Layanan
+        $selectedDate = $request->input('tanggal_layanan', 'semua'); // Default 'semua'
+        if ($selectedDate !== 'semua') {
+            $query->whereDate('tanggal_layanan', $selectedDate);
+        } else {
+            // Default to showing data for today + next 2 days if 'semua' is selected
+            $query->whereDate('tanggal_layanan', '>=', Carbon::today()->toDateString())
+                ->whereDate('tanggal_layanan', '<=', Carbon::today()->addDays(2)->toDateString());
+        }
+
+        // Filter berdasarkan Status Pendaftaran
+        $selectedStatus = $request->input('status_filter', 'all'); // Default 'all'
+        if ($selectedStatus !== 'all') {
+            if ($selectedStatus === 'ongoing') {
+                $query->where(function ($q) {
+                    $q->whereNull('status_pendaftaran')
+                        ->orWhere('status_pendaftaran', 0);
+                });
+            } elseif ($selectedStatus === 'approved') {
+                $query->where('status_pendaftaran', 1);
+            } elseif ($selectedStatus === 'rejected') {
+                $query->where('status_pendaftaran', 2);
+            }
+        }
+
+        // Pencarian berdasarkan keyword (nama, nopol, nouji)
+        $searchQuery = $request->input('q');
+        if ($searchQuery) {
+            $query->where(function ($q) use ($searchQuery) {
+                $q->where('nama', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('nopol', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('nouji', 'like', '%' . $searchQuery . '%');
+            });
+        }
+
+        // Urutkan data (misalnya berdasarkan tanggal layanan dan ID)
+        $pendaftaran = $query->orderBy('tanggal_layanan', 'asc')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        // --- 4. Kirim data ke View ---
+        return view('pages.admin.dashboard', compact(
+            'totalToday',
+            'acceptedToday',
+            'pendingToday',
+            'rejectedToday',
+            'day1',
+            'day1_store',
+            'day2',
+            'day2_store',
+            'day3',
+            'day3_store',
+            'pendaftaran',
+            'searchQuery',
+            'selectedDate',
+            'selectedStatus'
+        ));
+    }
+
     public function index(Request $request)
     {
         //dayformat untuk

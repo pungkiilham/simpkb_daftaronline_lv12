@@ -11,9 +11,10 @@
                             d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                     </svg>
                 </div>
-                <h1 class="text-xl md:text-2xl font-bold text-gray-800">Laporan Pendaftaran Online Harian</h1>
+                <h1 class="text-xl md:text-2xl font-bold text-gray-800">Laporan</h1>
             </div>
-            <p class="text-xs md:text-sm text-gray-600 ml-10 md:ml-14">Detail Laporan Seluruh Pendaftaran Online Yang Dilakukan Masyarakat</p>
+            <p class="text-xs md:text-sm text-gray-600 ml-10 md:ml-14">Detail Laporan Seluruh Pendaftaran Online Yang
+                Dilakukan Masyarakat</p>
         </div>
 
         <!-- Statistics Cards -->
@@ -157,7 +158,10 @@
                                     Jenis Layanan</th>
                                 <th
                                     class="hidden lg:table-cell px-2 py-2 text-xs font-medium text-gray-700 uppercase tracking-wider text-center whitespace-nowrap">
-                                    Tanggal Layanan</th>
+                                    Tgl Daftar</th>
+                                <th
+                                    class="hidden lg:table-cell px-2 py-2 text-xs font-medium text-gray-700 uppercase tracking-wider text-center whitespace-nowrap">
+                                    Tgl Layanan</th>
                                 <th
                                     class="px-2 py-2 text-xs font-medium text-gray-700 uppercase tracking-wider text-center whitespace-nowrap">
                                     No Antrian</th>
@@ -168,91 +172,94 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($pendaftaran as $k)
-                            <tr class="hover:bg-gray-50 transition-colors">
-                                <td class="px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                    {{ $loop->iteration }}</td>
-                                <td class="px-2 py-2 text-sm text-gray-900">
-                                    <div class="flex flex-col">
-                                        <span class="font-medium">{{ $k->nama }}</span>
-                                        {{-- <span class="font-medium">{{ $k->id }}</span> --}}
-                                    </div>
-                                </td>
-                                <td class="px-2 py-2 text-sm text-gray-900">
-                                    <div class="flex flex-col space-y-1 text-center">
-                                        <span>{{ $k->nopol }}</span>
-                                        <span>{{ $k->nouji }}</span>
-                                    </div>
-                                </td>
-                                @if ($k->jenis_layanan == 1)
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        {{ $loop->iteration }}</td>
+                                    <td class="px-2 py-2 text-sm text-gray-900">
+                                        <div class="flex flex-col">
+                                            <span class="font-medium">{{ $k->nama }}</span>
+                                            {{-- <span class="font-medium">{{ $k->id }}</span> --}}
+                                        </div>
+                                    </td>
+                                    <td class="px-2 py-2 text-sm text-gray-900">
+                                        <div class="flex flex-col space-y-1 text-center">
+                                            <span>{{ $k->nopol }}</span>
+                                            <span>{{ $k->nouji }}</span>
+                                        </div>
+                                    </td>
+                                    @if ($k->jenis_layanan == 1)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Baru</td>
+                                    @elseif ($k->jenis_layanan == 2)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Berkala</td>
+                                    @elseif ($k->jenis_layanan == 3)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Mutasi Masuk</td>
+                                    @elseif ($k->jenis_layanan == 4)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Mutasi Keluar</td>
+                                    @elseif ($k->jenis_layanan == 5)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Numpang Masuk</td>
+                                    @elseif ($k->jenis_layanan == 6)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Numpang Keluar</td>
+                                    @elseif ($k->jenis_layanan == 7)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Perubahan</td>
+                                    @elseif ($k->jenis_layanan == 8)
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            Lainnya</td>
+                                    @else
+                                        <td
+                                            class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                            -</td>
+                                    @endif
                                     <td
-                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        Baru</td>
-                                @elseif ($k->jenis_layanan == 2)
+                                        class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        {{ date('d M Y', strtotime($k->created_at)) }}</td>
                                     <td
-                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        Berkala</td>
-                                @elseif ($k->jenis_layanan == 3)
+                                        class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        {{ date('d M Y', strtotime($k->tanggal_layanan)) }}</td>
                                     <td
-                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        Mutasi Masuk</td>
-                                @elseif ($k->jenis_layanan == 4)
-                                    <td
-                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        Mutasi Keluar</td>
-                                @elseif ($k->jenis_layanan == 5)
-                                    <td
-                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        Numpang Masuk</td>
-                                @elseif ($k->jenis_layanan == 6)
-                                    <td
-                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        Numpang Keluar</td>
-                                @elseif ($k->jenis_layanan == 7)
-                                    <td
-                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        Perubahan</td>
-                                @elseif ($k->jenis_layanan == 8)
-                                    <td
-                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        Lainnya</td>
-                                @else
-                                    <td
-                                        class="hidden md:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                        -</td>
-                                @endif
-                                <td
-                                    class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                    {{ date('d M Y', strtotime($k->tanggal_layanan)) }}</td>
-                                <td
-                                    class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
-                                    {{ $k->no_antrian }}</td>
+                                        class="hidden lg:table-cell px-2 py-2 text-sm text-gray-900 text-center whitespace-nowrap">
+                                        {{ $k->no_antrian }}</td>
 
-                                @if ($k->status_pendaftaran == null || $k->status_pendaftaran == 0)
-                                    <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Belum</span>
-                                    </td>
-                                @elseif($k->status_pendaftaran == 2)
-                                    <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Ditolak</span>
-                                    </td>
-                                @elseif($k->status_pendaftaran == 1)
-                                    <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Diterima</span>
-                                    </td>
-                                @endif
-                            </tr>
+                                    @if ($k->status_pendaftaran == null || $k->status_pendaftaran == 0)
+                                        <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Belum</span>
+                                        </td>
+                                    @elseif($k->status_pendaftaran == 2)
+                                        <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Ditolak</span>
+                                        </td>
+                                    @elseif($k->status_pendaftaran == 1)
+                                        <td class="px-2 py-2 text-sm text-center whitespace-nowrap">
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Diterima</span>
+                                        </td>
+                                    @endif
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            {{-- <!-- Pagination -->
+            <!-- Pagination -->
             <div class="flex items-center justify-between mt-4">
-                <div class="flex items-center">
+                {{-- <div class="flex items-center">
                     <label class="text-sm text-gray-600 mr-2">Baris per halaman:</label>
                     <select
                         class="text-sm border border-gray-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
@@ -260,7 +267,7 @@
                         <option>50</option>
                         <option>100</option>
                     </select>
-                </div>
+                </div> --}}
                 <div class="flex items-center space-x-2">
                     <button
                         class="px-3 py-1 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
@@ -274,7 +281,7 @@
                         Next
                     </button>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
 @endsection

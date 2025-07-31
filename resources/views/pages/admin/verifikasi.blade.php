@@ -11,7 +11,7 @@
                             d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                     </svg>
                 </div>
-                <h1 class="text-xl md:text-2xl font-bold text-gray-800">Verifikasi Data Pendaftaran Online</h1>
+                <h1 class="text-xl md:text-2xl font-bold text-gray-800">Verifikasi Data/h1>
             </div>
             <p class="text-xs md:text-sm text-gray-600 ml-10 md:ml-14">Silahkan untuk melakukan verifikasi kelengkapann dan
                 kesesuaian data pendaftaran layanan.</p>
@@ -20,25 +20,6 @@
         <!-- Main Content Container with Alpine.js Data Scope -->
         <div x-data="{ isOpen: false, currentImageSrc: '', currentImageAlt: '' }" class="bg-white rounded-xl shadow-lg p-3 md:p-4 w-full">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
-
-                @if (isset($error))
-                    <div class="bg-red-200 text-red-600">
-                        {{ $error }}
-                    </div>
-                @endif
-                @if (isset($sukses))
-                    <div class="bg-green-200 text-green-600">
-                        {{ $sukses }}
-                    </div>
-                @endif
-
-                <!-- Form Section -->
-                {{-- <form class="space-y-6" action={{ route('pengujian-list.save_photo', ['id' => $id]) }} enctype="multipart/form-data"> --}}
-                {{-- <form class="space-y-6"
-                    action="{{ route('verifikasi', ['id' => isset($data) && $data->id ? $data->id : 0]) }}" method="POST"
-                    enctype="multipart/form-data">
-                    @csrf --}}
-
                 <div class="mb-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <!-- Left Column - Data Kendaraan Section -->
@@ -194,7 +175,7 @@
                                 </button>
                             </div>
 
-                            <form ction={{ route('verifikasi', ['id' => $data->id]) }} enctype="multipart/form-data"
+                            <form action={{ route('verifikasi', ['id' => $data->id]) }} enctype="multipart/form-data"
                                 method="POST">
                                 @csrf
                                 <div
